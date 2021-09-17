@@ -1,0 +1,26 @@
+{
+  "name": "balance-bot-v2",
+  "version": "2.1.0",
+  "description": "",
+  "main": "bb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@analytics/google-analytics": "^0.5.3",
+    "analytics": "^0.7.14",
+    "bcryptjs": "^2.4.3",
+    "binance": "^2.0.8",
+    "ccxt": "^1.43.29",
+    "date-fns": "^2.21.1",
+    "express": "^4.17.1",
+    "hybrid-crypto-js": "^0.2.4",
+    "ipaddr.js": "^2.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "lowdb": "^1.0.0",
+    "node-telegram-bot-api": "^0.53.0",
+    "socket.io": "^4.1.1"
+  }
+}
