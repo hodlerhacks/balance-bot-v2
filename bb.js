@@ -1,1 +1,1542 @@
-const _0x3c862b=_0x3e0c;(function(_0x727da1,_0x5b4931){const _0x44c326=_0x3e0c,_0x166158=_0x727da1();while(!![]){try{const _0x36ae5c=-parseInt(_0x44c326(0x1f8))/0x1*(-parseInt(_0x44c326(0x1c6))/0x2)+-parseInt(_0x44c326(0x22e))/0x3*(parseInt(_0x44c326(0x1a2))/0x4)+-parseInt(_0x44c326(0x1c3))/0x5+-parseInt(_0x44c326(0x1bb))/0x6+-parseInt(_0x44c326(0x161))/0x7*(-parseInt(_0x44c326(0x23e))/0x8)+-parseInt(_0x44c326(0x15c))/0x9+-parseInt(_0x44c326(0x153))/0xa*(-parseInt(_0x44c326(0x151))/0xb);if(_0x36ae5c===_0x5b4931)break;else _0x166158['push'](_0x166158['shift']());}catch(_0x3cab12){_0x166158['push'](_0x166158['shift']());}}}(_0x55ce,0xa045a));const _0xe8a46a=function(){let _0x2fd239=!![];return function(_0x5b66cf,_0x17ace7){const _0x1d0fbf=_0x2fd239?function(){const _0x1ef0a4=_0x3e0c;if(_0x17ace7){const _0x6c2299=_0x17ace7[_0x1ef0a4(0x167)](_0x5b66cf,arguments);return _0x17ace7=null,_0x6c2299;}}:function(){};return _0x2fd239=![],_0x1d0fbf;};}(),_0x3c4360=_0xe8a46a(this,function(){const _0x23e59f=_0x3e0c;return _0x3c4360[_0x23e59f(0x23c)]()['search'](_0x23e59f(0x23f))['toString']()[_0x23e59f(0x1aa)](_0x3c4360)[_0x23e59f(0x155)](_0x23e59f(0x23f));});_0x3c4360();'use strict';process[_0x3c862b(0x21f)][_0x3c862b(0x17a)]=0x1;const childProcess=require(_0x3c862b(0x1c0)),FileSync=require('lowdb/adapters/FileSync'),fs=require('fs'),fns=require(_0x3c862b(0x19f)),low=require('lowdb'),path=require(_0x3c862b(0x16a)),crypto=require(_0x3c862b(0x20e)),Crypt=require(_0x3c862b(0x22d))['Crypt'],RSA=require(_0x3c862b(0x22d))[_0x3c862b(0x1de)],bcrypt=require(_0x3c862b(0x20f)),jwt=require('jsonwebtoken'),analyticsLib=require('analytics')[_0x3c862b(0x160)],googleAnalytics=require('@analytics/google-analytics')['default'],ipaddr=require(_0x3c862b(0x1f5));let bbpath=_0x3c862b(0x1db);const botfile=_0x3c862b(0x140),configfile=_0x3c862b(0x123),settingsfile='bb-settings.json',securefile=_0x3c862b(0x13d);!fs[_0x3c862b(0x1be)](bbpath+botfile)&&(bbpath='');const configpath=bbpath+_0x3c862b(0x148);!fs[_0x3c862b(0x1be)](configpath)&&fs['mkdirSync'](configpath);function _0x3e0c(_0x149dae,_0x6f2bb2){const _0x2f66f7=_0x55ce();return _0x3e0c=function(_0x3c4360,_0xe8a46a){_0x3c4360=_0x3c4360-0x11e;let _0x55ced6=_0x2f66f7[_0x3c4360];return _0x55ced6;},_0x3e0c(_0x149dae,_0x6f2bb2);}const adapter=new FileSync(configpath+configfile),dbConfig=low(adapter);dbConfig['defaults']({'bots':[]})['write']();const adapter2=new FileSync(configpath+settingsfile),dbSettings=low(adapter2);dbSettings[_0x3c862b(0x1f3)]({'settings':{'timeshift':0x0}})[_0x3c862b(0x17c)]();const adapter3=new FileSync(configpath+securefile),dbSecure=low(adapter3);dbSecure['defaults']({'secure':{},'blacklist':[]})[_0x3c862b(0x17c)]();let crypt=new Crypt({'md':_0x3c862b(0x205),'rsaStandard':_0x3c862b(0x21d)});const saltRounds=0xa;let config=getConfiguration(),settings=getSettings(),secure=getSecure(),blacklist=getBlacklist(),newBot=![],pid=[],socket=[],serverStatus=[];const serverversion=require('./'+bbpath+_0x3c862b(0x128))['version'],maxSecretAge=0xa,loginExpiry=0x3c,tokenRefresh=0x5;let lastIpApproval,telegramIpApproval,telegram2FaApproval,accessControl,token,uuid,externalip,pidExpireLogin,pidRefreshToken,pidAnalytics;oneTimeMigration(),cleanBlacklist();const PORT=0xbb8,express=require(_0x3c862b(0x146)),app=express(),http=require(_0x3c862b(0x174))['createServer'](app);app[_0x3c862b(0x210)](express[_0x3c862b(0x1b3)](path['join'](__dirname,bbpath,_0x3c862b(0x1b6)))),app[_0x3c862b(0x210)](express['static'](path['join'](__dirname,bbpath,_0x3c862b(0x20b)))),app[_0x3c862b(0x12e)]('/',function(_0x33d19b,_0x2ec4fc){const _0x27cfee=_0x3c862b;_0x2ec4fc[_0x27cfee(0x186)](path[_0x27cfee(0x162)](__dirname,bbpath,_0x27cfee(0x1b6),_0x27cfee(0x20a)));}),app[_0x3c862b(0x12e)](_0x3c862b(0x1bc),function(_0x365fb1,_0x303bb8){const _0x38c18f=_0x3c862b;_0x303bb8[_0x38c18f(0x186)](path[_0x38c18f(0x162)](__dirname,bbpath,_0x38c18f(0x20b),'index.html'));}),app['get'](_0x3c862b(0x15d),(_0x736bfa,_0x2288ea)=>{const _0x52798a=_0x3c862b;_0x2288ea[_0x52798a(0x186)](path['join'](__dirname,bbpath,'build',_0x52798a(0x20a)));}),app[_0x3c862b(0x12e)](_0x3c862b(0x126),(_0x55d7dc,_0x160674)=>{const _0x28ddc6=_0x3c862b;_0x160674[_0x28ddc6(0x186)](path[_0x28ddc6(0x162)](__dirname,bbpath,_0x28ddc6(0x20b),_0x28ddc6(0x20a)));}),app['get'](_0x3c862b(0x1b2),(_0x2332ca,_0x19833d)=>{const _0xde1202=_0x3c862b;_0x19833d[_0xde1202(0x186)](path[_0xde1202(0x162)](__dirname,bbpath,'build',_0xde1202(0x20a)));}),app['get'](_0x3c862b(0x199),(_0x4be1e6,_0x4631ac)=>{const _0x32d2ad=_0x3c862b;_0x4631ac[_0x32d2ad(0x186)](path[_0x32d2ad(0x162)](__dirname,bbpath,_0x32d2ad(0x20b),_0x32d2ad(0x20a)));}),app[_0x3c862b(0x12e)](_0x3c862b(0x1ee),(_0x44755e,_0x3e7cf4)=>{const _0x752953=_0x3c862b;_0x3e7cf4['sendFile'](path[_0x752953(0x162)](__dirname,bbpath,'build','index.html'));}),app['get'](_0x3c862b(0x131),(_0xa7479f,_0x3f6707)=>{const _0x3d89bc=_0x3c862b;_0x3f6707[_0x3d89bc(0x186)](path[_0x3d89bc(0x162)](__dirname,bbpath,_0x3d89bc(0x20b),_0x3d89bc(0x20a)));}),http[_0x3c862b(0x16c)](PORT);const analytics=analyticsLib({'app':_0x3c862b(0x143),'plugins':[googleAnalytics({'trackingId':_0x3c862b(0x238)})]}),TelegramBot=require(_0x3c862b(0x173));let tgBot;if(settings[_0x3c862b(0x1fc)]&&settings[_0x3c862b(0x1fc)]!=''&&settings[_0x3c862b(0x1ae)]&&settings[_0x3c862b(0x1ae)]!='')initTelegram();initStates(),startServer(),startSocket(),startAnalytics();function startServer(){const _0x5cc2e6=_0x3c862b;console[_0x5cc2e6(0x21a)](''),console[_0x5cc2e6(0x21a)]('-----------------------------------------------------------------------------------'),logging(_0x5cc2e6(0x18c)+PORT),console['log'](_0x5cc2e6(0x1d9));if(config[_0x5cc2e6(0x145)]!=0x0)config['forEach'](_0x458bf4=>{const _0x269b80=_0x5cc2e6;if(_0x458bf4[_0x269b80(0x240)]==_0x269b80(0x197)||_0x458bf4[_0x269b80(0x240)]=='new')logging(_0x269b80(0x194)+_0x458bf4[_0x269b80(0x1a9)]+_0x269b80(0x200)+_0x458bf4[_0x269b80(0x1f1)]),startBot([_0x458bf4[_0x269b80(0x1a9)]],{'cwd':bbpath},function(_0x5b2fcf){if(_0x5b2fcf)logging(_0x5b2fcf);});else(_0x458bf4['status']==_0x269b80(0x1eb)||_0x458bf4[_0x269b80(0x240)]==_0x269b80(0x1a4))&&logging(_0x269b80(0x189)+_0x458bf4[_0x269b80(0x1a9)]+'\x20|\x20'+_0x458bf4[_0x269b80(0x1f1)]);});else!newBot&&console[_0x5cc2e6(0x21a)](_0x5cc2e6(0x121));if(newBot)addBot();console[_0x5cc2e6(0x21a)](_0x5cc2e6(0x1d9)),console[_0x5cc2e6(0x21a)]('');}function startSocket(){const _0x52043f=_0x3c862b,_0x265911=require('socket.io')(http,{});_0x265911['on'](_0x52043f(0x15b),_0x3ba6ae=>{const _0x2c99d8=_0x52043f;let _0x367190,_0x485d6a,_0x3bb7cc;const _0x18b9fa=_0x3ba6ae[_0x2c99d8(0x207)][_0x2c99d8(0x221)][_0x2c99d8(0x16b)],_0x2f441e=_0x3ba6ae['handshake'][_0x2c99d8(0x1e6)][_0x2c99d8(0x1d1)];if(!_0x2f441e)_0x3ba6ae[_0x2c99d8(0x1f0)](_0x2c99d8(0x240),{'publicKey':secure['publicKey']});else{uuid=timelyDecrypt(_0x3ba6ae['handshake'][_0x2c99d8(0x1e6)][_0x2c99d8(0x1d1)],![]),_0x485d6a=_0x18b9fa['match'](/bot[0-9]{3}/);if(_0x485d6a)_0x3bb7cc=_0x485d6a[0x0][_0x2c99d8(0x1d2)](/[0-9]{3}/);if(_0x3bb7cc)_0x367190=_0x3bb7cc[0x0];else _0x367190=_0x2c99d8(0x175);if(socket[_0x367190])socket[_0x367190][_0x2c99d8(0x237)](!![]);socket[_0x367190]=_0x3ba6ae,setAccess(_0x367190);if(accessControl[_0x2c99d8(0x14d)]){if(_0x367190=='botmanager')initializeSocketBotManager();else initializeSocketBot(_0x367190);}if(!serverStatus[_0x367190])serverStatus[_0x367190]=_0x2c99d8(0x188);socket[_0x367190]['on'](_0x2c99d8(0x130),_0x1970ca=>{const _0xa321a7=_0x2c99d8,_0x206115=timelyDecrypt(_0x1970ca['password']);if(_0x206115){_0x1970ca={'username':_0x1970ca['username'],'password':_0x206115};let _0x5894a3=validateCredentials(_0x1970ca);if(_0x5894a3[_0xa321a7(0x14d)]==![]&&_0x5894a3[_0xa321a7(0x1ba)]==_0xa321a7(0x164))socket[_0x367190]['emit'](_0xa321a7(0x240),{'access':_0x5894a3}),loginAccess2FA(externalip);else{if(_0x5894a3[_0xa321a7(0x14d)]==![]&&_0x5894a3[_0xa321a7(0x1ba)]=='invalid\x20credentials')socket[_0x367190]['emit'](_0xa321a7(0x240),{'access':_0x5894a3});else{if(_0x5894a3[_0xa321a7(0x14d)]&&_0x5894a3['reason']=='login\x20token\x20generated'){token=_0x5894a3[_0xa321a7(0x1e7)];for(let _0x38aed7 in socket){if(_0x38aed7==_0xa321a7(0x175))initializeSocketBotManager();else initializeSocketBot(_0x38aed7);socket[_0x38aed7][_0xa321a7(0x1f0)](_0xa321a7(0x240),{'status':serverStatus[_0x38aed7]||_0xa321a7(0x1e4),'serverversion':serverversion,'servertime':getServerTime(),'access':_0x5894a3,'externalip':externalip,'publicKey':secure[_0xa321a7(0x19c)],'loginNow':![]});}setTokenRefresh(),setSessionTimeout('login');}}}}else logging(_0xa321a7(0x1ab));}),socket[_0x367190]['on']('reset-password',()=>{resetPassword();}),socket[_0x367190]['on'](_0x2c99d8(0x237),_0x461d72=>{let _0x3e1d24=[];for(let _0xae49ce in socket){if(_0xae49ce!=_0x367190)_0x3e1d24[_0xae49ce]=socket[_0xae49ce];}socket=_0x3e1d24;});if(_0x367190!='botmanager'&&config['apiKey']!=''){if(pid[_0x367190])pid[_0x367190]['send']({'function':_0x2c99d8(0x158),'args':null});}}});}function setAccess(_0xfbe1ff){const _0x15a496=_0x3c862b;externalip=normalizeIP(socket[_0xfbe1ff][_0x15a496(0x1fb)]['remoteAddress'])[_0x15a496(0x22c)],accessControl=validateAccess(token),accessControl[_0x15a496(0x1e7)]&&accessControl[_0x15a496(0x1ba)]=='temporary\x20token\x20generated'&&setSessionTimeout(_0x15a496(0x1d8)),accessControl[_0x15a496(0x1e7)]&&accessControl['reason']==_0x15a496(0x1d0)&&setSessionTimeout(_0x15a496(0x130)),socket[_0xfbe1ff][_0x15a496(0x1f0)](_0x15a496(0x240),{'status':serverStatus[_0xfbe1ff]||_0x15a496(0x1e4),'serverversion':serverversion,'servertime':getServerTime(),'access':accessControl,'externalip':externalip,'publicKey':secure['publicKey'],'loginNow':accessControl[_0x15a496(0x1ba)]=='login\x20required'||accessControl[_0x15a496(0x1ba)]==_0x15a496(0x164)}),accessControl[_0x15a496(0x14d)]==![]&&accessControl['reason']==_0x15a496(0x1dd)&&temporaryAccess2FA(externalip);}function setSessionTimeout(_0x237227){const _0x586880=_0x3c862b;let _0x578c90;if(_0x237227==_0x586880(0x130))_0x578c90=loginExpiry*0x3c*0x3e8;else _0x578c90=telegramIpApproval['expiry']*0x3c*0x3e8-(new Date()[_0x586880(0x193)]()-telegramIpApproval[_0x586880(0x229)]);if(pidExpireLogin)clearTimeout(pidExpireLogin);pidExpireLogin=setTimeout(()=>{const _0x759d2e=_0x586880;if(pidRefreshToken)clearTimeout(pidRefreshToken);addBlacklist(),telegramIpApproval=null,telegram2FaApproval=null;let _0x59b309=validateAccess(token);if(!(_0x59b309['allow']&&_0x59b309[_0x759d2e(0x1ba)]==_0x759d2e(0x18e)))for(let _0x54e6b6 in socket){socket[_0x54e6b6]['emit'](_0x759d2e(0x240),{'access':{'allow':![],'reason':'access\x20timeout','token':null}});}token=null;},_0x578c90);}function setTokenRefresh(){if(pidRefreshToken)clearTimeout(pidRefreshToken);pidRefreshToken=setTimeout(()=>{const _0x193c7e=_0x3e0c;let _0xe253d4=refreshToken();for(let _0xfc999b in socket){socket[_0xfc999b][_0x193c7e(0x1f0)]('status',{'status':serverStatus[_0xfc999b]||'starting','serverversion':serverversion,'servertime':getServerTime(),'access':_0xe253d4,'externalip':externalip,'publicKey':secure[_0x193c7e(0x19c)],'loginNow':![]});}setTokenRefresh();},(tokenRefresh-0x1)*0x3c*0x3e8);}function initializeSocketBotManager(){const _0x4de778=_0x3c862b;socket['botmanager'][_0x4de778(0x1f0)](_0x4de778(0x178),config),socket[_0x4de778(0x175)][_0x4de778(0x1f0)](_0x4de778(0x1ca),cleanSettings()),socket[_0x4de778(0x175)]['on'](_0x4de778(0x14b),_0x5e78a1=>{const _0x56f2b1=_0x4de778;if(validateAccess(_0x5e78a1)[_0x56f2b1(0x14d)])addBot();else logging(_0x56f2b1(0x222));}),socket['botmanager']['on'](_0x4de778(0x17d),(_0x7ffb5f,_0x3dbe02)=>{const _0x477841=_0x4de778;if(validateAccess(_0x3dbe02)[_0x477841(0x14d)])toggleBot(_0x7ffb5f[_0x477841(0x1a9)],_0x7ffb5f[_0x477841(0x240)],_0x7ffb5f[_0x477841(0x216)]);else logging(_0x477841(0x1c4));}),socket[_0x4de778(0x175)]['on']('delete-bot',(_0x16b725,_0x2b1ad3)=>{const _0x343516=_0x4de778;if(validateAccess(_0x2b1ad3)[_0x343516(0x14d)])deleteBot(_0x16b725);else logging(_0x343516(0x224));}),socket['botmanager']['on']('store-settings',(_0x190eee,_0x1cf7bd)=>{const _0x2790d7=_0x4de778;if(validateAccess(_0x1cf7bd)[_0x2790d7(0x14d)])storeSettings(_0x190eee,!![]);else logging('Unauthorized\x20attempt\x20to\x20update\x20settings');}),socket[_0x4de778(0x175)]['on'](_0x4de778(0x181),_0x5c76ce=>{const _0x3635b6=_0x4de778;if(validateAccess(_0x5c76ce)[_0x3635b6(0x14d)]){if(pidRefreshToken)clearTimeout(pidRefreshToken);if(pidExpireLogin)clearTimeout(pidExpireLogin);removeSocketListeners(),addBlacklist(),telegramIpApproval=null,telegram2FaApproval=null,token=null;for(let _0x263a38 in socket){socket[_0x263a38][_0x3635b6(0x1f0)](_0x3635b6(0x240),{'access':{'allow':![],'reason':_0x3635b6(0x190),'token':null}});}}else logging(_0x3635b6(0x1dc));});}function initializeSocketBot(_0xa26ac4){const _0xf04996=_0x3c862b;socket[_0xa26ac4]['on'](_0xf04996(0x206),(_0x3c15bb,_0xc71e18)=>{const _0x2ce7d2=_0xf04996;if(validateAccess(_0xc71e18)[_0x2ce7d2(0x14d)]){if(pid[_0xa26ac4])pid[_0xa26ac4][_0x2ce7d2(0x13c)]({'function':'emitHistory','args':_0x3c15bb});}else logging(_0x2ce7d2(0x1fe));}),socket[_0xa26ac4]['on'](_0xf04996(0x185),(_0x1321ec,_0x3cf260)=>{const _0x13f815=_0xf04996;if(validateAccess(_0x3cf260)[_0x13f815(0x14d)]){if(pid[_0xa26ac4])pid[_0xa26ac4][_0x13f815(0x13c)]({'function':'getPortfolio','args':_0x1321ec});}else logging(_0x13f815(0x14e));}),socket[_0xa26ac4]['on'](_0xf04996(0x1e3),(_0x11165d,_0x11c93b)=>{const _0x386141=_0xf04996;if(validateAccess(_0x11c93b)[_0x386141(0x14d)]){if(pid[_0xa26ac4])pid[_0xa26ac4][_0x386141(0x13c)]({'function':_0x386141(0x124),'args':_0x11165d});}else logging(_0x386141(0x16f));}),socket[_0xa26ac4]['on'](_0xf04996(0x17b),(_0x9326dd,_0x5f1563)=>{const _0x3dbe00=_0xf04996;if(validateAccess(_0x5f1563)[_0x3dbe00(0x14d)]){if(pid[_0xa26ac4])pid[_0xa26ac4]['send']({'function':_0x3dbe00(0x134),'args':_0x9326dd});}else logging(_0x3dbe00(0x12f));}),socket[_0xa26ac4]['on']('get-starting-balances',_0x43fd50=>{const _0xcb242c=_0xf04996;if(validateAccess(_0x43fd50)[_0xcb242c(0x14d)]){if(pid[_0xa26ac4])pid[_0xa26ac4][_0xcb242c(0x13c)]({'function':_0xcb242c(0x1fd),'args':null});}else logging(_0xcb242c(0x19a));}),socket[_0xa26ac4]['on'](_0xf04996(0x1a1),(_0x2e5be6,_0x160c39)=>{const _0x380fbb=_0xf04996;if(validateAccess(_0x160c39)['allow']){if(pid[_0xa26ac4])pid[_0xa26ac4]['send']({'function':'placeOrder','args':_0x2e5be6});}else logging(_0x380fbb(0x179));}),socket[_0xa26ac4]['on'](_0xf04996(0x181),_0x52dfed=>{const _0x211457=_0xf04996;if(validateAccess(_0x52dfed)[_0x211457(0x14d)]){if(pidRefreshToken)clearTimeout(pidRefreshToken);if(pidExpireLogin)clearTimeout(pidExpireLogin);removeSocketListeners(),addBlacklist(),telegramIpApproval=null,telegram2FaApproval=null,token=null;for(let _0x50b216 in socket){socket[_0x50b216][_0x211457(0x1f0)](_0x211457(0x240),{'access':{'allow':![],'reason':'logged\x20out','token':null}});}}else logging('Unauthorized\x20attempt\x20to\x20log\x20out');});}function removeSocketListeners(){const _0x38878c=_0x3c862b;for(let _0x5b2f36 in socket){socket[_0x5b2f36][_0x38878c(0x1c2)]();}}function cleanSettings(){const _0x34a999=_0x3c862b;let _0x1d48a5=settings;return settings[_0x34a999(0x1fc)]&&settings[_0x34a999(0x1fc)]!=''&&(_0x1d48a5={..._0x1d48a5,'telegramToken':_0x34a999(0x182)}),settings[_0x34a999(0x1cb)]&&settings['bbPassword']!=''&&(_0x1d48a5={..._0x1d48a5,'bbPassword':_0x34a999(0x182)}),_0x1d48a5;}function startBot(_0x115b69,_0xdc0c9d,_0xb96dd3){const _0x4b0091=_0x3c862b;let _0x1f2fb1=![];const _0x4c6708=_0x115b69[0x0];_0xdc0c9d={..._0xdc0c9d,'stdio':[_0x4b0091(0x1e5),_0x4b0091(0x1e5),_0x4b0091(0x1e5),_0x4b0091(0x235)]},pid[_0x4c6708]=childProcess[_0x4b0091(0x159)](botfile,_0x115b69,_0xdc0c9d),pid[_0x4c6708]['on'](_0x4b0091(0x241),_0xdf0f32=>{const _0x36bea3=_0x4b0091;switch(Object['keys'](_0xdf0f32)[0x0]){case _0x36bea3(0x1f1):updateBotName(_0x4c6708,_0xdf0f32['botname']);break;case'status':updateStatus(_0x4c6708,_0xdf0f32[_0x36bea3(0x240)]);break;case'live':updateLive(_0x4c6708,_0xdf0f32[_0x36bea3(0x216)]);break;case _0x36bea3(0x15e):updateLive(_0x4c6708,_0xdf0f32[_0x36bea3(0x15e)]);if(socket[_0x4c6708])socket[_0x4c6708][_0x36bea3(0x1f0)](_0x36bea3(0x240),{'access':{'allow':![],'reason':'reload','token':null}});break;case _0x36bea3(0x22f):sendTelegram(_0x4c6708,_0xdf0f32[_0x36bea3(0x22f)]);break;case _0x36bea3(0x125):if(socket[_0x4c6708])socket[_0x4c6708][_0x36bea3(0x1f0)](_0xdf0f32['function'],_0xdf0f32[_0x36bea3(0x150)]);break;}}),pid[_0x4c6708]['on'](_0x4b0091(0x138),function(_0x2f70d1){if(_0x1f2fb1)return;_0x1f2fb1=!![],_0xb96dd3(_0x2f70d1);}),pid[_0x4c6708]['on'](_0x4b0091(0x122),function(_0x4f9365){const _0x277b31=_0x4b0091;if(_0x1f2fb1)return;_0x1f2fb1=!![],_0xb96dd3(null);const _0x2e1e81=dbConfig[_0x277b31(0x12e)](_0x277b31(0x178))[_0x277b31(0x1e1)]({'botID':_0x4c6708})[_0x277b31(0x223)]();_0x2e1e81&&(_0x2e1e81[_0x277b31(0x240)]=='enabled'||_0x2e1e81[_0x277b31(0x240)]==_0x277b31(0x201))&&(updateLive(_0x4c6708,_0x277b31(0x1ad)),_0x4f9365!=0x4d&&(logging(_0x277b31(0x16d)+_0x4c6708),startBot([_0x4c6708],{'cwd':bbpath},function(_0x345f10){if(_0x345f10)logging(_0x345f10);})));});}function stopBot(_0x43a2d3){const _0x51002b=_0x3c862b;if(socket[_0x43a2d3])socket[_0x43a2d3][_0x51002b(0x237)](!![]);if(pid[_0x43a2d3])pid[_0x43a2d3]['kill']();}function addBot(){const _0x458d95=_0x3c862b;let _0x23631e;for(let _0xfc7ecf=0x1;_0xfc7ecf<0x3e9;_0xfc7ecf++){_0x23631e=_0xfc7ecf[_0x458d95(0x23c)]()['padStart'](0x3,'0');let _0x581b4f=config[_0x458d95(0x1e1)](_0xf7bc87=>_0xf7bc87['botID']==_0x23631e);if(!_0x581b4f)break;}if(_0x23631e==='1000'){logging(_0x458d95(0x13f));return;}logging(_0x458d95(0x165)+_0x23631e),dbConfig[_0x458d95(0x12e)](_0x458d95(0x178))[_0x458d95(0x157)]({'botID':_0x23631e,'botname':'Bot\x20'+_0x23631e,'status':_0x458d95(0x201),'live':''})[_0x458d95(0x17c)](),startBot([_0x23631e],{'cwd':bbpath},function(_0x2e89b5){if(_0x2e89b5)logging(_0x2e89b5);}),config=getConfiguration();if(socket['botmanager'])socket[_0x458d95(0x175)]['emit']('bots',config);}function deleteBot(_0x6c686f){const _0xc8152b=_0x3c862b;if(socket[_0x6c686f])socket[_0x6c686f]['disconnect'](!![]);dbConfig[_0xc8152b(0x12e)](_0xc8152b(0x178))[_0xc8152b(0x215)]({'botID':_0x6c686f})['write'](),logging(_0xc8152b(0x1c1)+_0x6c686f),stopBot(_0x6c686f);try{fs[_0xc8152b(0x154)](path[_0xc8152b(0x162)](configpath,_0xc8152b(0x1f4)+_0x6c686f+_0xc8152b(0x233))),fs[_0xc8152b(0x154)](path[_0xc8152b(0x162)](configpath,'bot-'+_0x6c686f+'-events.json')),fs[_0xc8152b(0x154)](path[_0xc8152b(0x162)](configpath,_0xc8152b(0x1f4)+_0x6c686f+_0xc8152b(0x1cd))),fs[_0xc8152b(0x154)](path[_0xc8152b(0x162)](configpath,'bot-'+_0x6c686f+_0xc8152b(0x180)));}catch(_0x5656d5){if(_0x5656d5)logging(_0xc8152b(0x1af),_0x5656d5);}config=getConfiguration();if(socket[_0xc8152b(0x175)])socket[_0xc8152b(0x175)][_0xc8152b(0x1f0)]('bots',config);}function toggleBot(_0x14f112,_0x3bff4b,_0x39774b){const _0x1b491f=_0x3c862b;dbConfig[_0x1b491f(0x12e)](_0x1b491f(0x178))['find']({'botID':_0x14f112})['assign']({'status':_0x3bff4b})[_0x1b491f(0x18d)]({'live':_0x39774b})[_0x1b491f(0x17c)]();if(_0x3bff4b=='enabled'||_0x3bff4b==_0x1b491f(0x201))logging('enabled\x20Bot\x20'+_0x14f112),startBot([_0x14f112],{'cwd':bbpath},function(_0x1db21a){if(_0x1db21a)logging(_0x1db21a);});else(_0x3bff4b==_0x1b491f(0x1eb)||_0x3bff4b==_0x1b491f(0x1a4))&&(logging(_0x1b491f(0x1f2)+_0x14f112),stopBot(_0x14f112));config=getConfiguration();if(socket[_0x1b491f(0x175)])socket[_0x1b491f(0x175)][_0x1b491f(0x1f0)](_0x1b491f(0x178),config);}function updateStatus(_0x3d4a29,_0x3b7b78){const _0x152c31=_0x3c862b;dbConfig['get'](_0x152c31(0x178))[_0x152c31(0x1e1)]({'botID':_0x3d4a29})[_0x152c31(0x18d)]({'status':_0x3b7b78})[_0x152c31(0x17c)](),config=getConfiguration();if(socket[_0x152c31(0x175)])socket[_0x152c31(0x175)][_0x152c31(0x1f0)](_0x152c31(0x178),config);}function updateLive(_0x4386c6,_0x5bc560){const _0x146c86=_0x3c862b;dbConfig[_0x146c86(0x12e)](_0x146c86(0x178))[_0x146c86(0x1e1)]({'botID':_0x4386c6})[_0x146c86(0x18d)]({'live':_0x5bc560})[_0x146c86(0x17c)](),config=getConfiguration();if(socket[_0x146c86(0x175)])socket[_0x146c86(0x175)][_0x146c86(0x1f0)](_0x146c86(0x178),config);}function updateBotName(_0x47658c,_0x404c6a){const _0x43c086=_0x3c862b;dbConfig['get'](_0x43c086(0x178))['find']({'botID':_0x47658c})[_0x43c086(0x18d)]({'botname':_0x404c6a})[_0x43c086(0x17c)](),config=getConfiguration();if(socket[_0x43c086(0x175)])socket[_0x43c086(0x175)]['emit'](_0x43c086(0x178),config);}function telegramError(_0x1d154f){const _0x294d07=_0x3c862b;console[_0x294d07(0x21a)](getTimeStamp()+_0x294d07(0x204));}function validateTelegram(_0x4e28c3){const _0x42d364=_0x3c862b;if(_0x4e28c3[_0x42d364(0x212)][_0x42d364(0x239)]!=settings['telegramUsername']&&'@'+_0x4e28c3[_0x42d364(0x212)]['username']!=settings[_0x42d364(0x1ae)])return tgBot['sendMessage'](_0x4e28c3[_0x42d364(0x163)]['id'],'Unauthorized\x20user\x20-\x20make\x20sure\x20you\x27ve\x20entered\x20your\x20<b>personal</b>\x20Telegram\x20username\x20in\x20the\x20Bot\x20Manager\x27s\x20settings',{'parse_mode':'HTML'})[_0x42d364(0x19e)](_0x1eb175=>{telegramError(_0x1eb175);}),![];return!![];}async function initTelegram(){const _0x3ac508=_0x3c862b;if(tgBot)tgBot[_0x3ac508(0x225)](),tgBot=null,initTelegram();else{tgBot=new TelegramBot(settings[_0x3ac508(0x1fc)],{'polling':!![]});let _0x22e434=_0x3ac508(0x16e);_0x22e434+='\x0a',_0x22e434+=_0x3ac508(0x231),_0x22e434+='/disable\x20-\x20disable\x20notifications\x0a',_0x22e434+=_0x3ac508(0x12c),_0x22e434+='/restart\x20-\x20restart\x20a\x20bot\x0a',_0x22e434+=_0x3ac508(0x234),_0x22e434+=_0x3ac508(0x177);let _0x38d2e7=_0x3ac508(0x214);_0x38d2e7+='\x0a',_0x38d2e7+=_0x22e434,tgBot[_0x3ac508(0x220)](/\/start/,_0x3139f1=>{const _0x2a7cb6=_0x3ac508;if(!validateTelegram(_0x3139f1))return;if(settings[_0x2a7cb6(0x219)]!=_0x3139f1[_0x2a7cb6(0x163)]['id'])updateSetting('telegramChatId',_0x3139f1[_0x2a7cb6(0x163)]['id']);updateSetting(_0x2a7cb6(0x22b),!![]),tgBot['sendMessage'](_0x3139f1[_0x2a7cb6(0x163)]['id'],_0x38d2e7)['catch'](_0x33877b=>{telegramError(_0x33877b);});}),tgBot[_0x3ac508(0x220)](/\/enable/,_0x1e242b=>{const _0x121ffd=_0x3ac508;if(!validateTelegram(_0x1e242b))return;if(settings[_0x121ffd(0x219)]!=_0x1e242b[_0x121ffd(0x163)]['id'])updateSetting(_0x121ffd(0x219),_0x1e242b[_0x121ffd(0x163)]['id']);updateSetting(_0x121ffd(0x22b),!![]),tgBot[_0x121ffd(0x152)](_0x1e242b[_0x121ffd(0x163)]['id'],_0x121ffd(0x1b4))[_0x121ffd(0x19e)](_0x38c255=>{telegramError(_0x38c255);});}),tgBot[_0x3ac508(0x220)](/\/config/,async _0x6b1f79=>{const _0x48b462=_0x3ac508;if(!validateTelegram(_0x6b1f79))return;tgBot['removeListener'](_0x48b462(0x1d3)),tgBot[_0x48b462(0x152)](_0x6b1f79[_0x48b462(0x163)]['id'],_0x48b462(0x22a),{'reply_markup':{'inline_keyboard':[[{'text':_0x48b462(0x196),'callback_data':_0x48b462(0x1e8)},{'text':_0x48b462(0x15a),'callback_data':'alerts'},{'text':'All','callback_data':_0x48b462(0x1b7)}]]}})[_0x48b462(0x19e)](_0x1f7f23=>{telegramError(_0x1f7f23);}),tgBot['on'](_0x48b462(0x1d3),async _0x276dfb=>{const _0x13fecd=_0x48b462,_0x9e3efb=_0x276dfb[_0x13fecd(0x13a)],_0x4b8dac=_0x276dfb['message'];tgBot[_0x13fecd(0x1a7)](_0x276dfb['id'])[_0x13fecd(0x11f)](async()=>{const _0x5217a8=_0x13fecd;_0x9e3efb==_0x5217a8(0x1e8)&&(updateSetting('telegramEvents',_0x5217a8(0x1e8)),updateSetting(_0x5217a8(0x22b),!![]),await tgBot[_0x5217a8(0x152)](_0x4b8dac[_0x5217a8(0x163)]['id'],_0x5217a8(0x17f))[_0x5217a8(0x19e)](_0x3298bd=>{telegramError(_0x3298bd);}));_0x9e3efb==_0x5217a8(0x141)&&(updateSetting(_0x5217a8(0x1a0),'alerts'),updateSetting(_0x5217a8(0x22b),!![]),await tgBot[_0x5217a8(0x152)](_0x4b8dac[_0x5217a8(0x163)]['id'],_0x5217a8(0x211))['catch'](_0x2efbcc=>{telegramError(_0x2efbcc);}));_0x9e3efb==_0x5217a8(0x1b7)&&(updateSetting(_0x5217a8(0x1a0),_0x5217a8(0x1b7)),updateSetting(_0x5217a8(0x22b),!![]),await tgBot[_0x5217a8(0x152)](_0x4b8dac['chat']['id'],_0x5217a8(0x232))[_0x5217a8(0x19e)](_0x4f7fcb=>{telegramError(_0x4f7fcb);}));if(!settings[_0x5217a8(0x219)])tgBot[_0x5217a8(0x152)](_0x4b8dac[_0x5217a8(0x163)]['id'],'Note:\x20notifications\x20are\x20currently\x20disabled\x20-\x20to\x20enable\x20notifications,\x20type\x20/enable')['catch'](_0xeab891=>{telegramError(_0xeab891);});}),tgBot[_0x13fecd(0x1a6)]('callback_query');});}),tgBot[_0x3ac508(0x220)](/\/status/,_0x36d7c4=>{const _0x1d90e3=_0x3ac508;if(!validateTelegram(_0x36d7c4))return;let _0x22bf55=_0x1d90e3(0x244);config['forEach'](_0x44d651=>{const _0x46dfc8=_0x1d90e3;_0x22bf55+=_0x46dfc8(0x1c9)+_0x44d651['botID']+_0x46dfc8(0x200)+_0x44d651[_0x46dfc8(0x1f1)]+':\x20'+_0x44d651[_0x46dfc8(0x240)]+'\x20/\x20'+_0x44d651[_0x46dfc8(0x216)]+'\x0a';}),_0x22bf55+='\x0a',_0x22bf55+=_0x1d90e3(0x1d6),_0x22bf55+=!settings[_0x1d90e3(0x22b)]?_0x1d90e3(0x1a5):_0x1d90e3(0x136),_0x22bf55+=settings[_0x1d90e3(0x22b)]?settings[_0x1d90e3(0x1a0)]==_0x1d90e3(0x1b7)?_0x1d90e3(0x135):'Notifications\x20types:\x20'+settings[_0x1d90e3(0x1a0)]+_0x1d90e3(0x166):'',tgBot[_0x1d90e3(0x152)](_0x36d7c4['chat']['id'],_0x22bf55,{'parse_mode':_0x1d90e3(0x1fa)})['catch'](_0x213ded=>{telegramError(_0x213ded);});}),tgBot['onText'](/\/restart/,_0xa0b3ce=>{const _0x49ab37=_0x3ac508;if(!validateTelegram(_0xa0b3ce))return;tgBot[_0x49ab37(0x1a6)](_0x49ab37(0x1d3));const _0x4d5cdf=getEnabledBots();if(_0x4d5cdf[_0x49ab37(0x145)]==0x0)tgBot[_0x49ab37(0x152)](_0xa0b3ce[_0x49ab37(0x163)]['id'],_0x49ab37(0x243))['catch'](_0x2fdbb8=>{telegramError(_0x2fdbb8);});else{let _0x217162=[],_0x32bb79=[];const _0x4f878d=_0x4d5cdf[_0x49ab37(0x145)]%0x4==0x0||_0x4d5cdf[_0x49ab37(0x145)]%0x4==0x3||_0x4d5cdf[_0x49ab37(0x145)]%0x3==0x1?0x4:0x3;let _0x3e140b=0x0;_0x4d5cdf['forEach']((_0x55f907,_0x3a7bfa)=>{const _0xe2d0d5=_0x49ab37;if(_0x3a7bfa%_0x4f878d==0x0)_0x32bb79=[];_0x32bb79[_0xe2d0d5(0x157)]({'text':_0xe2d0d5(0x1c9)+_0x55f907[_0xe2d0d5(0x1a9)],'callback_data':_0x55f907[_0xe2d0d5(0x1a9)]}),_0x3a7bfa%_0x4f878d==0x0&&(_0x217162[_0x3e140b]=_0x32bb79,_0x3e140b++);}),tgBot['sendMessage'](_0xa0b3ce[_0x49ab37(0x163)]['id'],_0x49ab37(0x12b),{'reply_markup':{'inline_keyboard':_0x217162}})['catch'](_0x52a1cf=>{telegramError(_0x52a1cf);}),tgBot['on']('callback_query',async _0x409382=>{const _0x8f6ce3=_0x49ab37,_0x54ec49=_0x409382[_0x8f6ce3(0x13a)],_0x16182c=_0x409382[_0x8f6ce3(0x241)];tgBot[_0x8f6ce3(0x1a7)](_0x409382['id'])[_0x8f6ce3(0x11f)](async()=>{const _0x145766=_0x8f6ce3;if(settings['telegramEvents']==_0x145766(0x1e8))tgBot['sendMessage'](_0x16182c[_0x145766(0x163)]['id'],_0x145766(0x1b8)+_0x54ec49)[_0x145766(0x19e)](_0x4e33b5=>{telegramError(_0x4e33b5);});stopBot(_0x54ec49);}),tgBot[_0x8f6ce3(0x1a6)](_0x8f6ce3(0x1d3));});}}),tgBot[_0x3ac508(0x220)](/\/disable/,_0x3c2ee4=>{const _0x4c8dd0=_0x3ac508;if(!validateTelegram(_0x3c2ee4))return;tgBot[_0x4c8dd0(0x152)](_0x3c2ee4['chat']['id'],_0x4c8dd0(0x21b))[_0x4c8dd0(0x19e)](_0x3e6b04=>{telegramError(_0x3e6b04);}),updateSetting('telegramEnabled',![]);}),tgBot[_0x3ac508(0x220)](/\/help/,_0x3b188a=>{const _0x450fab=_0x3ac508;if(!validateTelegram(_0x3b188a))return;tgBot[_0x450fab(0x152)](_0x3b188a[_0x450fab(0x163)]['id'],_0x22e434)[_0x450fab(0x19e)](_0xb19753=>{telegramError(_0xb19753);});}),tgBot['on'](_0x3ac508(0x1c8),_0x32e689=>{const _0x9ef93a=_0x3ac508;if(_0x32e689[_0x9ef93a(0x23c)]()['includes'](_0x9ef93a(0x1e9))){logging(_0x9ef93a(0x1b1)),tgBot[_0x9ef93a(0x225)](),tgBot=null;if(socket[_0x9ef93a(0x175)])socket[_0x9ef93a(0x175)][_0x9ef93a(0x1f0)](_0x9ef93a(0x191),_0x9ef93a(0x1b1));}}),process[_0x3ac508(0x1e0)](_0x3ac508(0x213),()=>{if(tgBot)tgBot['stopPolling']();process['exit'](0x1);}),process[_0x3ac508(0x1e0)](_0x3ac508(0x15f),()=>{const _0x21b25e=_0x3ac508;if(tgBot)tgBot[_0x21b25e(0x225)]();process[_0x21b25e(0x122)](0x1);});}}function disableTelegram(){tgBot&&(tgBot['stopPolling'](),tgBot=null);}function sendTelegram(_0x2c9e04,_0x4f87fc){const _0x497eec=_0x3c862b;if(settings[_0x497eec(0x22b)]){if(settings['telegramEvents']==_0x497eec(0x1b7)||(_0x4f87fc[_0x497eec(0x228)]==_0x497eec(0x138)||_0x4f87fc[_0x497eec(0x228)]==_0x497eec(0x1ef))&&settings[_0x497eec(0x1a0)]=='alerts'||_0x4f87fc['type']==_0x497eec(0x23a)&&settings[_0x497eec(0x1a0)]==_0x497eec(0x1e8)){if(tgBot&&settings[_0x497eec(0x219)])tgBot[_0x497eec(0x152)](settings[_0x497eec(0x219)],'Bot\x20'+_0x2c9e04+_0x497eec(0x1b9)+_0x4f87fc['event'])[_0x497eec(0x19e)](_0x395d84=>{telegramError(_0x395d84);});}}}function temporaryAccess2FA(_0x4619ab){const _0x25c6b2=_0x3c862b;let _0x3b9461=new Date(),_0x530623=![];if(lastIpApproval){if(_0x3b9461-lastIpApproval<0x1388)_0x530623=!![];}lastIpApproval=new Date();if(_0x530623)return;tgBot&&settings[_0x25c6b2(0x219)]&&(tgBot['removeListener'](_0x25c6b2(0x1d3)),tgBot[_0x25c6b2(0x152)](settings[_0x25c6b2(0x219)],_0x25c6b2(0x218)+normalizeIP(_0x4619ab)[_0x25c6b2(0x23b)]+_0x25c6b2(0x20d),{'parse_mode':_0x25c6b2(0x1fa),'reply_markup':{'inline_keyboard':[[{'text':'5\x20min','callback_data':'5'},{'text':_0x25c6b2(0x14c),'callback_data':'15'},{'text':_0x25c6b2(0x156),'callback_data':'30'},{'text':_0x25c6b2(0x19b),'callback_data':_0x25c6b2(0x19b)}]]}})['catch'](_0x849a52=>{telegramError(_0x849a52);}),tgBot['on']('callback_query',async _0x3f73a3=>{const _0x5346af=_0x25c6b2,_0x49dd9d=_0x3f73a3['data'],_0x113c7a=_0x3f73a3['message'];tgBot[_0x5346af(0x1a7)](_0x3f73a3['id'])[_0x5346af(0x11f)](async()=>{const _0x383aac=_0x5346af;if(_0x49dd9d!=_0x383aac(0x19b)){telegramIpApproval={'clientip':_0x4619ab,'timestamp':new Date()['getTime'](),'expiry':_0x49dd9d},await tgBot[_0x383aac(0x152)](_0x113c7a[_0x383aac(0x163)]['id'],_0x383aac(0x142)+_0x49dd9d+_0x383aac(0x217),{'parse_mode':_0x383aac(0x1fa)})['catch'](_0x45d287=>{telegramError(_0x45d287);});for(let _0x10c60d in socket){socket[_0x10c60d]['emit']('status',{'access':{'allow':![],'reason':_0x383aac(0x1a8),'token':null}});}}else await tgBot['sendMessage'](_0x113c7a[_0x383aac(0x163)]['id'],_0x383aac(0x12a))['catch'](_0x470693=>{telegramError(_0x470693);});}),tgBot[_0x5346af(0x1a6)]('callback_query');}));}function loginAccess2FA(_0x19b9d5){const _0x56c666=_0x3c862b;tgBot&&settings['telegramChatId']&&(tgBot['removeListener']('callback_query'),tgBot['sendMessage'](settings[_0x56c666(0x219)],_0x56c666(0x195)+normalizeIP(_0x19b9d5)[_0x56c666(0x23b)]+_0x56c666(0x20d),{'parse_mode':'HTML','reply_markup':{'inline_keyboard':[[{'text':_0x56c666(0x132),'callback_data':loginExpiry},{'text':'reject','callback_data':_0x56c666(0x19b)}]]}})['catch'](_0x2478b0=>{telegramError(_0x2478b0);}),tgBot['on'](_0x56c666(0x1d3),async _0x58801=>{const _0x17f5db=_0x56c666,_0x88ade3=_0x58801[_0x17f5db(0x13a)],_0x5e6655=_0x58801[_0x17f5db(0x241)];tgBot[_0x17f5db(0x1a7)](_0x58801['id'])['then'](async()=>{const _0x5ba129=_0x17f5db;if(_0x88ade3!=_0x5ba129(0x19b)){telegram2FaApproval={'clientip':_0x19b9d5,'timestamp':new Date()[_0x5ba129(0x193)](),'expiry':_0x88ade3},await tgBot['sendMessage'](_0x5e6655[_0x5ba129(0x163)]['id'],'Login\x20accepted',{'parse_mode':_0x5ba129(0x1fa)})[_0x5ba129(0x19e)](_0x229d01=>{telegramError(_0x229d01);});for(let _0x8ff4bc in socket){socket[_0x8ff4bc][_0x5ba129(0x1f0)]('status',{'access':{'allow':![],'reason':_0x5ba129(0x1a8),'token':null}});}}else await tgBot[_0x5ba129(0x152)](_0x5e6655['chat']['id'],_0x5ba129(0x1cc))[_0x5ba129(0x19e)](_0x589fdc=>{telegramError(_0x589fdc);});}),tgBot[_0x17f5db(0x1a6)](_0x17f5db(0x1d3));}));}function getConfiguration(){const _0x322dc2=_0x3c862b;return dbConfig[_0x322dc2(0x12e)](_0x322dc2(0x178))[_0x322dc2(0x242)](_0x322dc2(0x1a9))[_0x322dc2(0x223)]()||[];}function getEnabledBots(){const _0x492f7a=_0x3c862b;return dbConfig[_0x492f7a(0x12e)](_0x492f7a(0x178))[_0x492f7a(0x242)]('botID')[_0x492f7a(0x21c)]({'status':_0x492f7a(0x197)})[_0x492f7a(0x223)]()||[];}function getSettings(){const _0x2e586c=_0x3c862b;return dbSettings[_0x2e586c(0x12e)](_0x2e586c(0x1ca))[_0x2e586c(0x223)]()||{'timeshift':0x0};}function getSecure(){const _0x5d769c=_0x3c862b;return dbSecure['get'](_0x5d769c(0x17e))[_0x5d769c(0x223)]()||{};}function getBlacklist(){const _0x3ac603=_0x3c862b;return dbSecure[_0x3ac603(0x12e)](_0x3ac603(0x168))[_0x3ac603(0x223)]()||[];}function broadcastToBots(_0x3ed732,_0x393f70){config['forEach'](_0x803bb5=>{const _0x1ca573=_0x3e0c;if(_0x803bb5[_0x1ca573(0x240)]=='enabled'&&_0x803bb5[_0x1ca573(0x216)]=='running'){if(pid[_0x803bb5[_0x1ca573(0x1a9)]])pid[_0x803bb5[_0x1ca573(0x1a9)]][_0x1ca573(0x13c)]({[_0x3ed732]:_0x393f70});}});}function _0x55ce(){const _0x23edcf=['</b>\x20?','crypto','bcryptjs','use','Ok,\x20will\x20send\x20alert\x20notifications\x20only','from','SIGINT','Welcome\x20to\x20your\x20personal\x20Balance\x20Bot\x20Telegram\x20bot!\x0a','remove','live','\x20minutes','Allow\x20temporary\x20access\x20from\x20IP\x20address\x20<b>','telegramChatId','log','Notifications\x20disabled','filter','RSA-OAEP','hashSync','env','onText','headers','Unauthorized\x20attempt\x20to\x20add\x20bot','value','Unauthorized\x20attempt\x20to\x20delete\x20bot','stopPolling','privateKey','running','type','timestamp','Of\x20which\x20events\x20do\x20you\x20want\x20to\x20be\x20notified?','telegramEnabled','store','hybrid-crypto-js','2206383qUdbYA','telegram','compareSync','/enable\x20-\x20enable\x20notifications\x0a','Ok,\x20will\x20send\x20both\x20order\x20and\x20alert\x20notifications','-config.json','/status\x20-\x20show\x20the\x20status\x20of\x20your\x20bots\x0a','ipc','Bot\x20Mgr\x20>\x20','disconnect','UA-192771731-1','username','order','show','toString','getFullYear','5751016jgeRWZ','(((.+)+)+)+$','status','message','sortBy','No\x20bots\x20enabled\x20right\x20now','<b>Balance\x20Bot\x20status:</b>\x0a','getSeconds','then','ipv6','>\x20Set\x20up\x20your\x20first\x20bot\x20in\x20the\x20Bot\x20Manager!','exit','bb-config.json','storeConfiguration','function','/:bot/performance','kind','version.json','0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$','Temporary\x20access\x20rejected','Which\x20bot\x20do\x20you\x20want\x20to\x20restart?','/config\x20-\x20notification\x20types\x20to\x20receive\x0a','temporaryAccessAllowed','get','Unauthorized\x20attempt\x20to\x20store\x20headless\x20configuration','login','/:bot/support','accept','sign','storeHeadless','Notifications\x20types:\x20orders\x20and\x20alerts\x0a','Notifications\x20enabled\x0a','isIPv4MappedAddress','error','split','data','login\x20token\x20generated','send','bb-secure.json','Password\x20reset\x20rejected','the\x20maximum\x20of\x20999\x20bots\x20has\x20been\x20reached','bot.js','alerts','Access\x20enabled\x20for\x20','Balance\x20Bot','entries','length','express','parse','config/','page','f2aRequired','add-bot','15\x20min','allow','Unauthorized\x20attempt\x20to\x20get\x20portfolio','bbUsername','args','77xSbmFp','sendMessage','2422400miZplI','unlinkSync','search','30\x20min','push','initclient','fork','Alerts','connection','4107204YyyuQm','/:bot/portfolio','started','SIGTERM','default','7WOaqaj','join','chat','2FA\x20login\x20required','starting\x20new\x20bot\x20|\x20Bot\x20','\x20only\x0a','apply','blacklist','whitelist','path','referer','listen','restarting\x20Bot\x20','You\x20can\x20use\x20the\x20following\x20commands:\x0a','Unauthorized\x20attempt\x20to\x20store\x20configuration','max','invalid\x20credentials','toIPv4MappedAddress','node-telegram-bot-api','http','botmanager','login\x20token\x20valid','/help\x20-\x20show\x20avaiable\x20commands\x0a','bots','Unauthorized\x20attempt\x20to\x20place\x20market\x20order','NTBA_FIX_319','store-headless','write','update-bot','secure','Ok,\x20will\x20send\x20order\x20notifications\x20only','-results.json','logout','************','temporary\x20access\x20not\x20allowed','Invalid\x20authentication\x20token\x20(2)','get-portfolio','sendFile','expiry','connected','idling\x20bot\x20\x20\x20|\x20Bot\x20','map','forEach','Bot\x20Manager\x20started\x20|\x20open:\x20http://[ip-address]:','assign','login\x20not\x20required','127.0.0.1','logged\x20out','notification','timeshift','getTime','starting\x20bot\x20|\x20Bot\x20','Allow\x20login\x20from\x20IP\x20address\x20<b>','Orders','enabled','getHours','/:bot/history','Unauthorized\x20attempt\x20to\x20get\x20starting\x20balances','reject','publicKey','hasOwnProperty','catch','date-fns','telegramEvents','place-order','4KrsUUz','getMonth','new-disabled','Notifications\x20disabled\x0a','removeListener','answerCallbackQuery','reload','botID','constructor','Unauthorized\x20attempt\x20logging\x20in\x20(timeout)','https://hodlerhacks.com','stopped','telegramUsername','error\x20while\x20deleting\x20log\x20files:\x20','::ffff:127.0.0.1','Invalid\x20Telegram\x20token','/:bot/coins','static','Notifications\x20enabled','password','build2','all','Bot\x20Mgr\x20>\x20restarting\x20Bot\x20','\x20>\x20','reason','2548686BXDsrc','/:bot','secret','existsSync','includes','child_process','deleted\x20Bot\x20','removeAllListeners','3488990cyvdUG','Unauthorized\x20attempt\x20to\x20update\x20bot','yes','1112626jHqhyn','temporary\x20token\x20generated','polling_error','Bot\x20','settings','bbPassword','Login\x20rejected','-performance.json','getDate','randomFillSync','2FA\x20login\x20token\x20generated','encryptedUuid','match','callback_query','Invalid\x20IP\x20address','decrypt','<b>Telegram\x20bot\x20status:</b>\x0a','exp','2FA','-----------------------------------------------------------------------------------','getUTCHours','bb/','Unauthorized\x20attempt\x20to\x20log\x20out','2FA\x20required','RSA','set','once','find','login\x20required','store-configuration','starting','inherit','auth','token','orders','404\x20Not\x20Found','User\x20has\x20been\x20validated','disabled','whitelistEnabled','Token\x20blacklisted','/:bot/configuration','success','emit','botname','disabled\x20Bot\x20','defaults','bot-','ipaddr.js','hex','add','1vztVTe','padStart','HTML','conn','telegramToken','getStartingBalances','Unauthorized\x20attempt\x20to\x20get\x20logs','settings.','\x20|\x20','new','generateKeyPairAsync','Do\x20you\x20want\x20to\x20reset\x20your\x20password?',':\x20Bot\x20Mgr\x20>\x20Sending\x20Telegram\x20message\x20failed','sha256','get-logs','handshake','loginRequired','clientip','index.html','build','No\x20authentication\x20token'];_0x55ce=function(){return _0x23edcf;};return _0x55ce();}function storeSettings(_0x5df101,_0x594c77=![]){const _0x59c6e0=_0x3c862b;_0x5df101={...settings,..._0x5df101};if(_0x594c77&&_0x5df101[_0x59c6e0(0x1cb)]!='************'&&_0x5df101['bbPassword']!=''){const _0x27956b=crypt['decrypt'](secure[_0x59c6e0(0x226)],_0x5df101[_0x59c6e0(0x1cb)])['message'][_0x59c6e0(0x139)]('@')[0x0],_0x5c3246=bcrypt['hashSync'](_0x27956b,saltRounds);_0x5df101={..._0x5df101,'bbPassword':_0x5c3246};}if(_0x594c77&&_0x5df101['telegramToken']!=_0x59c6e0(0x182)&&_0x5df101[_0x59c6e0(0x1fc)]!=''){const _0x5177ac=crypt[_0x59c6e0(0x1d5)](secure[_0x59c6e0(0x226)],_0x5df101['telegramToken'])[_0x59c6e0(0x241)][_0x59c6e0(0x139)]('@')[0x0];_0x5df101={..._0x5df101,'telegramToken':_0x5177ac};}const _0x5571c6=_0x5df101['telegramToken']!=_0x59c6e0(0x182)&&_0x5df101['telegramToken']!=settings[_0x59c6e0(0x1fc)]||_0x5df101[_0x59c6e0(0x1ae)]!=settings[_0x59c6e0(0x1ae)],_0x3b772e=_0x5df101['telegramToken']==''||_0x5df101[_0x59c6e0(0x1ae)]=='';if(_0x5571c6)_0x5df101[_0x59c6e0(0x1a0)]=_0x59c6e0(0x1b7);for(const [_0x3ebb1e,_0x1a7cfa]of Object[_0x59c6e0(0x144)](_0x5df101)){if(_0x3ebb1e=='telegramToken'&&_0x1a7cfa=='************'){_0x5df101['telegramToken']=settings[_0x59c6e0(0x1fc)];continue;};if(_0x3ebb1e==_0x59c6e0(0x1cb)&&_0x1a7cfa==_0x59c6e0(0x182)){_0x5df101['bbPassword']=settings['bbPassword'];continue;};dbSettings[_0x59c6e0(0x1df)](_0x59c6e0(0x1ff)+_0x3ebb1e,_0x1a7cfa)[_0x59c6e0(0x17c)]();}settings=_0x5df101;if(socket[_0x59c6e0(0x175)])socket[_0x59c6e0(0x175)][_0x59c6e0(0x1f0)](_0x59c6e0(0x1ca),cleanSettings());broadcastToBots(_0x59c6e0(0x192),settings[_0x59c6e0(0x192)]);if(_0x5571c6&&!_0x3b772e)initTelegram();if(_0x5571c6&&_0x3b772e)disableTelegram();for(let _0x3eb605 in socket){setAccess(_0x3eb605);}}function updateSetting(_0x3e4e57,_0x1d960b){const _0x6dfe12=_0x3c862b;dbSettings[_0x6dfe12(0x1df)](_0x6dfe12(0x1ff)+_0x3e4e57,_0x1d960b)[_0x6dfe12(0x17c)](),settings=getSettings();if(socket[_0x6dfe12(0x175)])socket[_0x6dfe12(0x175)][_0x6dfe12(0x1f0)]('settings',cleanSettings());}function storeSecure(_0x420593){const _0x5757bf=_0x3c862b;dbSecure[_0x5757bf(0x12e)](_0x5757bf(0x17e))[_0x5757bf(0x157)](_0x420593)[_0x5757bf(0x17c)](),secure=_0x420593;}function addBlacklist(){const _0x58b9ad=_0x3c862b;cleanBlacklist();let _0x24ae47;telegramIpApproval?_0x24ae47=Math[_0x58b9ad(0x170)](telegramIpApproval[_0x58b9ad(0x187)],loginExpiry):_0x24ae47=loginExpiry,dbSecure[_0x58b9ad(0x12e)](_0x58b9ad(0x168))[_0x58b9ad(0x157)]({'expiry':new Date()[_0x58b9ad(0x193)]()+_0x24ae47*0x3c*0x3e8,'token':token})[_0x58b9ad(0x17c)](),blacklist=dbSecure['get'](_0x58b9ad(0x168))[_0x58b9ad(0x223)]();}function cleanBlacklist(){const _0x4602eb=_0x3c862b;let _0x2dd8c0=dbSecure['get'](_0x4602eb(0x168))['cloneDeep']()[_0x4602eb(0x223)](),_0x5d0dc7=new Date()[_0x4602eb(0x193)]();_0x2dd8c0[_0x4602eb(0x18b)](_0x3939a6=>{const _0x533087=_0x4602eb;_0x3939a6[_0x533087(0x187)]<_0x5d0dc7&&dbSecure[_0x533087(0x12e)](_0x533087(0x168))['remove']({'expiry':_0x3939a6[_0x533087(0x187)]})[_0x533087(0x17c)]();});}function initStates(){let _0x59c2cf=getConfiguration();_0x59c2cf['forEach'](_0x2fb7bb=>{const _0x50aa24=_0x3e0c;_0x2fb7bb[_0x50aa24(0x216)]=_0x50aa24(0x1ad);}),storeConfiguration(_0x59c2cf);}function onKeys(){const _0x36cfa6=new RSA();return new Promise(_0x38222d=>{const _0x189ecc=_0x3e0c;_0x36cfa6[_0x189ecc(0x202)]()[_0x189ecc(0x11f)](_0x1b06e0=>{_0x38222d(_0x1b06e0);});});}async function generateKeys(){return await onKeys();}async function oneTimeMigration(){const _0x40d184=_0x3c862b;let _0x2ce78b=getConfiguration(),_0x42a675=![];_0x2ce78b[_0x40d184(0x18b)](_0xbab9be=>{const _0x3018f4=_0x40d184;if(_0xbab9be['status']==_0x3018f4(0x227))_0xbab9be[_0x3018f4(0x240)]=_0x3018f4(0x197),_0x42a675=!![];else _0xbab9be[_0x3018f4(0x240)]==_0x3018f4(0x1ad)&&(_0xbab9be['status']='disabled',_0x42a675=!![]);});if(_0x42a675)storeConfiguration(_0x2ce78b);let _0x4e29fa=getSecure();if(!_0x4e29fa[_0x40d184(0x19d)](_0x40d184(0x1bd))){let _0x28f471=await generateKeys();_0x4e29fa[_0x40d184(0x19c)]=_0x28f471[_0x40d184(0x19c)],_0x4e29fa[_0x40d184(0x226)]=_0x28f471[_0x40d184(0x226)],_0x4e29fa[_0x40d184(0x1bd)]=crypto['randomBytes'](0x20)[_0x40d184(0x23c)](_0x40d184(0x1f6));;storeSecure(_0x4e29fa);}let _0x581725=getSettings();_0x42a675=![];!_0x581725[_0x40d184(0x19d)]('loginRequired')&&(_0x581725[_0x40d184(0x208)]=![],_0x581725[_0x40d184(0x14f)]='',_0x581725[_0x40d184(0x1cb)]='',_0x581725[_0x40d184(0x14a)]=![],_0x42a675=!![]);!_0x581725[_0x40d184(0x19d)](_0x40d184(0x1ec))&&(_0x581725[_0x40d184(0x1ec)]=![],_0x581725[_0x40d184(0x169)]=[],_0x581725[_0x40d184(0x12d)]=![],_0x42a675=!![]);if(!_0x581725[_0x40d184(0x19d)]('telegramEnabled')){if(_0x581725['telegramChatId'])_0x581725[_0x40d184(0x22b)]=!![];else _0x581725[_0x40d184(0x22b)]=![];_0x42a675=!![];}if(_0x42a675)storeSettings(_0x581725);}function storeConfiguration(_0x8d47eb){const _0x306daf=_0x3c862b;dbConfig[_0x306daf(0x12e)]('bots')[_0x306daf(0x215)]()['write'](),dbConfig[_0x306daf(0x12e)]('bots')[_0x306daf(0x157)](..._0x8d47eb)[_0x306daf(0x17c)](),config=_0x8d47eb;}function resetPassword(){const _0x5202b0=_0x3c862b;tgBot&&settings[_0x5202b0(0x219)]&&(tgBot[_0x5202b0(0x1a6)](_0x5202b0(0x1d3)),tgBot[_0x5202b0(0x152)](settings[_0x5202b0(0x219)],_0x5202b0(0x203),{'parse_mode':'HTML','reply_markup':{'inline_keyboard':[[{'text':'yes','callback_data':_0x5202b0(0x1c5)},{'text':'no','callback_data':'no'}]]}})['catch'](_0x4bc1ac=>{telegramError(_0x4bc1ac);}),tgBot['on'](_0x5202b0(0x1d3),async _0x4e10c8=>{const _0x3b4545=_0x5202b0,_0x594971=_0x4e10c8[_0x3b4545(0x13a)],_0x1aa179=_0x4e10c8[_0x3b4545(0x241)];tgBot[_0x3b4545(0x1a7)](_0x4e10c8['id'])[_0x3b4545(0x11f)](async()=>{const _0x2cd1bf=_0x3b4545;if(_0x594971!='no'){const _0x239f17=0xf,_0x483784=_0x2cd1bf(0x129),_0x47d78c=Array['from'](crypto[_0x2cd1bf(0x1cf)](new Uint32Array(_0x239f17)))[_0x2cd1bf(0x18a)](_0x34da4b=>_0x483784[_0x34da4b%_0x483784[_0x2cd1bf(0x145)]])['join'](''),_0x1397e=bcrypt[_0x2cd1bf(0x21e)](_0x47d78c,saltRounds);storeSettings({'bbPassword':_0x1397e}),await tgBot[_0x2cd1bf(0x152)](_0x1aa179[_0x2cd1bf(0x163)]['id'],'Password\x20has\x20been\x20reset\x20to:\x20'+_0x47d78c,{'parse_mode':_0x2cd1bf(0x1fa)})[_0x2cd1bf(0x19e)](_0x49393a=>{telegramError(_0x49393a);});}else await tgBot['sendMessage'](_0x1aa179[_0x2cd1bf(0x163)]['id'],_0x2cd1bf(0x13e))['catch'](_0x29976a=>{telegramError(_0x29976a);});}),tgBot[_0x3b4545(0x1a6)](_0x3b4545(0x1d3));}));}function logging(_0x480ec6){const _0x1ea198=_0x3c862b;console['log'](getTimeStamp()+':\x20Bot\x20Mgr\x20>\x20'+_0x480ec6);if(tgBot&&settings[_0x1ea198(0x219)]&&settings[_0x1ea198(0x1a0)]!=_0x1ea198(0x1e8))tgBot['sendMessage'](settings[_0x1ea198(0x219)],_0x1ea198(0x236)+_0x480ec6)[_0x1ea198(0x19e)](_0x34ac32=>{telegramError(_0x34ac32);});}function getServerTime(){const _0x40ec47=_0x3c862b,_0x13aa68=new Date();return _0x13aa68[_0x40ec47(0x23d)]()+'/'+(_0x13aa68[_0x40ec47(0x1a3)]()+0x1)[_0x40ec47(0x23c)]()[_0x40ec47(0x1f9)](0x2,'0')+'/'+_0x13aa68[_0x40ec47(0x1ce)]()[_0x40ec47(0x23c)]()[_0x40ec47(0x1f9)](0x2,'0')+'\x20'+_0x13aa68[_0x40ec47(0x198)]()[_0x40ec47(0x23c)]()[_0x40ec47(0x1f9)](0x2,'0')+':'+_0x13aa68['getMinutes']()[_0x40ec47(0x23c)]()[_0x40ec47(0x1f9)](0x2,'0')+':'+_0x13aa68[_0x40ec47(0x11e)]()[_0x40ec47(0x23c)]()['padStart'](0x2,'0');}function getTimeStamp(){const _0x3c67c0=_0x3c862b,_0x1d99c7=shiftedTime();return _0x1d99c7[_0x3c67c0(0x23d)]()+'/'+(_0x1d99c7[_0x3c67c0(0x1a3)]()+0x1)[_0x3c67c0(0x23c)]()[_0x3c67c0(0x1f9)](0x2,'0')+'/'+_0x1d99c7[_0x3c67c0(0x1ce)]()[_0x3c67c0(0x23c)]()['padStart'](0x2,'0')+'\x20'+_0x1d99c7[_0x3c67c0(0x198)]()['toString']()[_0x3c67c0(0x1f9)](0x2,'0')+':'+_0x1d99c7['getMinutes']()[_0x3c67c0(0x23c)]()['padStart'](0x2,'0')+':'+_0x1d99c7['getSeconds']()['toString']()['padStart'](0x2,'0');}function shiftedTime(){const _0x17cec4=_0x3c862b,_0x922855=new Date();let _0x5f0923=_0x922855;if(settings[_0x17cec4(0x192)]&&settings[_0x17cec4(0x192)]!==0x0)_0x5f0923=fns[_0x17cec4(0x1f7)](_0x922855,{'hours':settings[_0x17cec4(0x192)]});return _0x5f0923;}function startAnalytics(){const _0x30474a=_0x3c862b;let _0x5599e0=new Date()[_0x30474a(0x1da)]();_0x5599e0==0x9&&triggerAnalytics();if(pidAnalytics)clearTimeout(pidAnalytics);pidAnalytics=setTimeout(()=>{startAnalytics();},0x3c*0x3c*0x3e8);}function triggerAnalytics(){const _0x7652d=_0x3c862b;analytics[_0x7652d(0x149)]({'title':'Balance\x20Bot\x20Server','href':_0x7652d(0x1ac),'path':'/v'+serverversion});}function validateCredentials(_0x110ded){const _0x18c517=_0x3c862b;if(_0x110ded['username']==settings[_0x18c517(0x14f)]&&bcrypt[_0x18c517(0x230)](_0x110ded[_0x18c517(0x1b5)],settings[_0x18c517(0x1cb)])){if(settings[_0x18c517(0x14a)])return{'allow':![],'reason':_0x18c517(0x164),'token':null};else{const _0x1a4ef7=generateLoginToken();return{'allow':!![],'reason':_0x18c517(0x13b),'token':_0x1a4ef7};}}else return{'allow':![],'reason':_0x18c517(0x171),'token':null};}function refreshToken(){const _0x54eeb3=_0x3c862b,_0x8be5cd=generateLoginToken();return{'allow':!![],'reason':_0x54eeb3(0x13b),'token':_0x8be5cd};}function validateAccess(_0x18f11){const _0x418f62=_0x3c862b;let _0x1d9459;const _0xae9f5a=_0x6fdf29=>{const _0x3bd15f=_0x3e0c;if(settings['loginRequired']){if(settings[_0x3bd15f(0x14a)]){if(telegram2FaApproved()){const _0x473ee6=generateLoginToken();return{'allow':!![],'reason':_0x3bd15f(0x1d0),'token':_0x473ee6};}else return{'allow':![],'reason':_0x3bd15f(0x164),'token':null};}else return _0x1d9459=validToken(_0x6fdf29),_0x1d9459['hasOwnProperty']('success')?{'allow':!![],'reason':_0x3bd15f(0x176),'token':_0x6fdf29}:{'allow':![],'reason':_0x3bd15f(0x1e2),'token':null};}else return{'allow':!![],'reason':_0x3bd15f(0x18e),'token':null};};if(settings['whitelistEnabled']){let _0x569381=[...settings[_0x418f62(0x169)],'::1',_0x418f62(0x1b0),_0x418f62(0x18f)];if(_0x569381[_0x418f62(0x1bf)](externalip))return _0xae9f5a(_0x18f11);else{_0x1d9459=validToken(_0x18f11);if(_0x1d9459[_0x418f62(0x19d)](_0x418f62(0x1ef)))return _0xae9f5a(_0x18f11);else{if(telegramIpApproved()){const _0x2e85f8=generateToken();return _0x1d9459=_0xae9f5a(_0x18f11),_0x1d9459[_0x418f62(0x14d)]?{'allow':!![],'reason':_0x418f62(0x1c7),'token':_0x2e85f8}:_0x1d9459;}else return settings[_0x418f62(0x12d)]?{'allow':![],'reason':_0x418f62(0x1dd),'token':null}:{'allow':![],'reason':_0x418f62(0x183),'token':null};}}}else return _0xae9f5a(_0x18f11);}function timelyDecrypt(_0x66ce74,_0x457bd5=!![]){const _0xf8bf76=_0x3c862b;if(_0x66ce74)try{const _0x40fd1d=crypt[_0xf8bf76(0x1d5)](secure[_0xf8bf76(0x226)],_0x66ce74)[_0xf8bf76(0x241)],_0x391ccd=_0x40fd1d[_0xf8bf76(0x139)]('@')[0x0],_0x5a56ce=_0x40fd1d[_0xf8bf76(0x139)]('@')[0x1],_0x293892=new Date()[_0xf8bf76(0x193)]();if(_0x457bd5){if(_0x293892-_0x5a56ce<maxSecretAge*0x3e8)return _0x391ccd;else return![];}else return _0x391ccd;}catch{return![];}else return![];}const validToken=_0x22576e=>{const _0xa1a65a=_0x3c862b;if(!_0x22576e)return{'error':_0xa1a65a(0x20c)};for(let _0xf1965b of blacklist){if(_0xf1965b[_0xa1a65a(0x1e7)]==_0x22576e)return{'error':_0xa1a65a(0x1ed)};}let _0x4bf9f3;try{_0x4bf9f3=jwt['verify'](_0x22576e,secure[_0xa1a65a(0x1bd)]+uuid);}catch{return{'error':'Invalid\x20authentication\x20token\x20(1)'};}if(!_0x4bf9f3[_0xa1a65a(0x19d)](_0xa1a65a(0x209))&&!_0x4bf9f3[_0xa1a65a(0x19d)]('username')||!_0x4bf9f3[_0xa1a65a(0x19d)](_0xa1a65a(0x1d7)))return{'error':_0xa1a65a(0x184)};if(!_0x4bf9f3[_0xa1a65a(0x19d)](_0xa1a65a(0x239))&&_0x4bf9f3['hasOwnProperty'](_0xa1a65a(0x209))){const {clientip:_0x5828bf}=_0x4bf9f3;return externalip==_0x5828bf?{'success':_0xa1a65a(0x1ea)}:{'error':_0xa1a65a(0x1d4)};}else{if(_0x4bf9f3[_0xa1a65a(0x19d)](_0xa1a65a(0x239))&&_0x4bf9f3[_0xa1a65a(0x19d)](_0xa1a65a(0x209))){const {username:_0x1edcfd,clientip:_0x42d937}=_0x4bf9f3;return settings[_0xa1a65a(0x14f)]==_0x1edcfd&&externalip==_0x42d937?{'success':_0xa1a65a(0x1ea)}:{'error':'Invalid\x20username\x20or\x20IP\x20address'};}}},generateLoginToken=()=>{const _0x3234e0=_0x3c862b;if(uuid)return jwt['sign']({'username':settings[_0x3234e0(0x14f)],'clientip':externalip},secure[_0x3234e0(0x1bd)]+uuid,{'expiresIn':tokenRefresh*0x3c});else return![];},generateToken=()=>{const _0x5974f9=_0x3c862b;if(uuid)return jwt[_0x5974f9(0x133)]({'clientip':externalip},secure[_0x5974f9(0x1bd)]+uuid,{'expiresIn':telegramIpApproval[_0x5974f9(0x187)]*0x3c});else return![];},telegramIpApproved=()=>{const _0x899b66=_0x3c862b;let _0x47931f=![];return telegramIpApproval&&telegramIpApproval[_0x899b66(0x187)]!='reject'&&(_0x47931f=telegramIpApproval['clientip']==externalip&&new Date()[_0x899b66(0x193)]()-telegramIpApproval['timestamp']<telegramIpApproval[_0x899b66(0x187)]*0x3c*0x3e8),_0x47931f;},telegram2FaApproved=()=>{const _0xb11b69=_0x3c862b;let _0x35af35=![];return telegram2FaApproval&&telegram2FaApproval[_0xb11b69(0x187)]!=_0xb11b69(0x19b)&&(_0x35af35=telegram2FaApproval[_0xb11b69(0x209)]==externalip&&new Date()[_0xb11b69(0x193)]()-telegram2FaApproval[_0xb11b69(0x229)]<telegram2FaApproval[_0xb11b69(0x187)]*0x3c*0x3e8),_0x35af35;},normalizeIP=_0x4af999=>{const _0x3435ef=_0x3c862b;let _0x56469b=null,_0x2a9886=null;if(ipaddr['isValid'](_0x4af999)){const _0x47690d=ipaddr[_0x3435ef(0x147)](_0x4af999);_0x47690d[_0x3435ef(0x127)]()===_0x3435ef(0x120)?(_0x47690d[_0x3435ef(0x137)]()&&(_0x56469b=_0x47690d['toIPv4Address']()['toString']()),_0x2a9886=_0x47690d['toString']()):(_0x56469b=_0x47690d[_0x3435ef(0x23c)](),_0x2a9886=_0x47690d[_0x3435ef(0x172)]()['toString']());}return{'show':_0x56469b?_0x56469b:_0x2a9886,'store':_0x2a9886};};
+'use strict';
+const _0x4fdc0e = _0x2ca6;
+(function (_0x4acd22, _0x3c5ef3) {
+    const _0x2fb9d7 = _0x2ca6, _0x326680 = _0x4acd22();
+    while (!![]) {
+        try {
+            const _0x37a1dd = parseInt(_0x2fb9d7(0x2af)) / 0x1 * (parseInt(_0x2fb9d7(0x247)) / 0x2) + parseInt(_0x2fb9d7(0x271)) / 0x3 + -parseInt(_0x2fb9d7(0x215)) / 0x4 * (-parseInt(_0x2fb9d7(0x20b)) / 0x5) + parseInt(_0x2fb9d7(0x2c3)) / 0x6 + -parseInt(_0x2fb9d7(0x24e)) / 0x7 * (-parseInt(_0x2fb9d7(0x2b8)) / 0x8) + parseInt(_0x2fb9d7(0x272)) / 0x9 * (parseInt(_0x2fb9d7(0x269)) / 0xa) + -parseInt(_0x2fb9d7(0x2c5)) / 0xb;
+            if (_0x37a1dd === _0x3c5ef3)
+                break;
+            else
+                _0x326680['push'](_0x326680['shift']());
+        } catch (_0x539c1c) {
+            _0x326680['push'](_0x326680['shift']());
+        }
+    }
+}(_0x4304, 0xe6d3a));
+process[_0x4fdc0e(0x1d6)][_0x4fdc0e(0x29f)] = 0x1;
+const childProcess = require(_0x4fdc0e(0x27f)), FileSync = require(_0x4fdc0e(0x1e0)), fs = require('fs'), fns = require(_0x4fdc0e(0x1ed)), low = require(_0x4fdc0e(0x2d6)), path = require(_0x4fdc0e(0x24c)), crypto = require(_0x4fdc0e(0x22e)), Crypt = require(_0x4fdc0e(0x1f1))[_0x4fdc0e(0x212)], RSA = require(_0x4fdc0e(0x1f1))[_0x4fdc0e(0x209)], bcrypt = require('bcryptjs'), jwt = require(_0x4fdc0e(0x21e)), analyticsLib = require(_0x4fdc0e(0x1c0))[_0x4fdc0e(0x1f0)], googleAnalytics = require(_0x4fdc0e(0x29a))[_0x4fdc0e(0x1f0)], ipaddr = require(_0x4fdc0e(0x228));
+let bbpath = _0x4fdc0e(0x1c5);
+const botfile = _0x4fdc0e(0x2cc), configfile = _0x4fdc0e(0x1dc), settingsfile = 'bb-settings.json', securefile = _0x4fdc0e(0x2a6);
+!fs[_0x4fdc0e(0x259)](bbpath + botfile) && (bbpath = '');
+const configpath = bbpath + _0x4fdc0e(0x289);
+!fs[_0x4fdc0e(0x259)](configpath) && fs[_0x4fdc0e(0x229)](configpath);
+const adapter = new FileSync(configpath + configfile), dbConfig = low(adapter);
+function _0x4304() {
+    const _0x24c92f = [
+        'removeAllListeners',
+        'path',
+        'Bot\x20Manager\x20started\x20|\x20open:\x20http://[ip-address]:',
+        '3571925FVxGiu',
+        'login\x20not\x20required',
+        'get-starting-balances',
+        'idling\x20bot\x20\x20\x20|\x20Bot\x20',
+        'getDate',
+        '/:bot/performance',
+        'reject',
+        'from',
+        'build',
+        'getFullYear',
+        'build2',
+        'existsSync',
+        '30\x20min',
+        '/:bot/coins',
+        'yes',
+        'node-telegram-bot-api',
+        'Unauthorized\x20attempt\x20to\x20log\x20out',
+        'exit',
+        'temporaryAccessAllowed',
+        'All',
+        'decrypt',
+        'error',
+        'starting',
+        'privateKey',
+        'telegramToken',
+        'botID',
+        'allow',
+        '10GnMBws',
+        'remoteAddress',
+        'forEach',
+        'https://hodlerhacks.com',
+        'event',
+        'set',
+        'index.html',
+        'handshake',
+        '1262544TJmdAS',
+        '2785644vOoJVp',
+        '\x20|\x20',
+        'sendFile',
+        'push',
+        'store-configuration',
+        'getStartingBalances',
+        'verify',
+        'sortBy',
+        'sendMessage',
+        'send',
+        'toIPv4Address',
+        'express',
+        'Balance\x20Bot\x20Server',
+        'child_process',
+        'connection',
+        'Unauthorized\x20attempt\x20to\x20store\x20configuration',
+        'Notifications\x20disabled',
+        'Notifications\x20types:\x20',
+        'onText',
+        'add-bot',
+        'data',
+        'HTML',
+        'http',
+        'config/',
+        'User\x20has\x20been\x20validated',
+        'initclient',
+        'Invalid\x20Telegram\x20token',
+        'Ok,\x20will\x20send\x20alert\x20notifications\x20only',
+        'username',
+        'timestamp',
+        'log',
+        'get-portfolio',
+        'logout',
+        'Bot\x20Mgr\x20>\x20',
+        'show',
+        'polling_error',
+        'connected',
+        'cloneDeep',
+        'placeOrder',
+        'Unauthorized\x20attempt\x20logging\x20in\x20(timeout)',
+        '@analytics/google-analytics',
+        'length',
+        'Temporary\x20access\x20rejected',
+        '\x20>\x20',
+        'store',
+        'NTBA_FIX_319',
+        'ipc',
+        'Allow\x20temporary\x20access\x20from\x20IP\x20address\x20<b>',
+        'settings.',
+        'SIGINT',
+        'entries',
+        'logged\x20out',
+        'bb-secure.json',
+        'use',
+        'login',
+        'args',
+        'Password\x20has\x20been\x20reset\x20to:\x20',
+        'page',
+        'find',
+        'createServer',
+        'Ok,\x20will\x20send\x20both\x20order\x20and\x20alert\x20notifications',
+        '131WKTmXf',
+        'store-headless',
+        'success',
+        'Invalid\x20username\x20or\x20IP\x20address',
+        'listen',
+        'referer',
+        'socket.io',
+        '>\x20Set\x20up\x20your\x20first\x20bot\x20in\x20the\x20Bot\x20Manager!',
+        'getUTCHours',
+        '8EFWbtJ',
+        'isValid',
+        'started',
+        '<b>Telegram\x20bot\x20status:</b>\x0a',
+        'telegramUsername',
+        'encryptedUuid',
+        'login\x20required',
+        'answerCallbackQuery',
+        'getPortfolio',
+        'emit',
+        'secure',
+        '5733378ULejwO',
+        'getTime',
+        '19070062OsAfpM',
+        'Unauthorized\x20attempt\x20to\x20add\x20bot',
+        'storeHeadless',
+        'generateKeyPairAsync',
+        'fork',
+        'Balance\x20Bot',
+        'padStart',
+        'bot.js',
+        'bbUsername',
+        '-config.json',
+        'running',
+        'hasOwnProperty',
+        'telegramEvents',
+        'timeshift',
+        '/status\x20-\x20show\x20the\x20status\x20of\x20your\x20bots\x0a',
+        'Allow\x20login\x20from\x20IP\x20address\x20<b>',
+        'match',
+        'lowdb',
+        'alerts',
+        'delete-bot',
+        'Note:\x20notifications\x20are\x20currently\x20disabled\x20-\x20to\x20enable\x20notifications,\x20type\x20/enable',
+        'expiry',
+        'Notifications\x20enabled',
+        'clientip',
+        'map',
+        '\x20minutes',
+        'version',
+        '404\x20Not\x20Found',
+        'Invalid\x20authentication\x20token\x20(1)',
+        'function',
+        'whitelistEnabled',
+        'starting\x20new\x20bot\x20|\x20Bot\x20',
+        'auth',
+        '2FA\x20required',
+        'analytics',
+        'Unauthorized\x20attempt\x20to\x20update\x20settings',
+        'No\x20authentication\x20token',
+        'catch',
+        'removeListener',
+        'bb/',
+        'headers',
+        'enabled',
+        '/:bot/history',
+        'Password\x20reset\x20rejected',
+        'deleted\x20Bot\x20',
+        '-performance.json',
+        '/:bot',
+        '/:bot/support',
+        '2FA\x20login\x20token\x20generated',
+        'telegramEnabled',
+        'Unauthorized\x20attempt\x20to\x20get\x20logs',
+        'invalid\x20credentials',
+        'write',
+        'temporary\x20access\x20not\x20allowed',
+        'telegram',
+        'getHours',
+        'env',
+        '/enable\x20-\x20enable\x20notifications\x0a',
+        'bots',
+        'botmanager',
+        '-----------------------------------------------------------------------------------',
+        'Unauthorized\x20attempt\x20to\x20update\x20bot',
+        'bb-config.json',
+        'error\x20while\x20deleting\x20log\x20files:\x20',
+        'loginRequired',
+        'disabled\x20Bot\x20',
+        'lowdb/adapters/FileSync',
+        '-events.json',
+        'publicKey',
+        'botname',
+        'assign',
+        'emitHistory',
+        'toIPv4MappedAddress',
+        'randomBytes',
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$',
+        'enabled\x20Bot\x20',
+        'Unauthorized\x20attempt\x20to\x20get\x20starting\x20balances',
+        'Unauthorized\x20attempt\x20to\x20place\x20market\x20order',
+        'orders',
+        'date-fns',
+        'new-disabled',
+        '/config\x20-\x20notification\x20types\x20to\x20receive\x0a',
+        'default',
+        'hybrid-crypto-js',
+        'max',
+        'settings',
+        'value',
+        'getSeconds',
+        'UA-192771731-1',
+        'filter',
+        'reset-password',
+        '5\x20min',
+        'get',
+        '-results.json',
+        'storeConfiguration',
+        'unlinkSync',
+        'hashSync',
+        'split',
+        'telegramChatId',
+        'token',
+        'Which\x20bot\x20do\x20you\x20want\x20to\x20restart?',
+        'disconnect',
+        'Invalid\x20authentication\x20token\x20(2)',
+        'place-order',
+        'defaults',
+        'keys',
+        'getMonth',
+        'RSA',
+        '127.0.0.1',
+        '1329195tNCihM',
+        'Welcome\x20to\x20your\x20personal\x20Balance\x20Bot\x20Telegram\x20bot!\x0a',
+        '<b>Balance\x20Bot\x20status:</b>\x0a',
+        'secret',
+        'Unauthorized\x20attempt\x20to\x20store\x20headless\x20configuration',
+        'ipv6',
+        'stopPolling',
+        'Crypt',
+        'once',
+        'Ok,\x20will\x20send\x20order\x20notifications\x20only',
+        '4STjzbf',
+        'getMinutes',
+        'randomFillSync',
+        '2FA\x20login\x20required',
+        'conn',
+        'join',
+        'live',
+        'reload',
+        'inherit',
+        'jsonwebtoken',
+        'remove',
+        'chat',
+        'disabled',
+        'blacklist',
+        '15\x20min',
+        '/:bot/configuration',
+        'bbPassword',
+        'reason',
+        'bot-',
+        'ipaddr.js',
+        'mkdirSync',
+        'apiKey',
+        'stopped',
+        'callback_query',
+        'Bot\x20',
+        'crypto',
+        'accept',
+        'static',
+        'compareSync',
+        'then',
+        '\x20only\x0a',
+        'type',
+        '\x20/\x20',
+        'store-settings',
+        'new',
+        'all',
+        '************',
+        'whitelist',
+        'status',
+        'login\x20token\x20valid',
+        'toString',
+        'get-logs',
+        'Notifications\x20disabled\x0a',
+        'sign',
+        'login\x20token\x20generated',
+        ':\x20Bot\x20Mgr\x20>\x20Sending\x20Telegram\x20message\x20failed',
+        'Unauthorized\x20attempt\x20to\x20delete\x20bot',
+        'f2aRequired',
+        'Login\x20accepted',
+        'order',
+        '3314OQpgas',
+        'password',
+        'message',
+        'includes'
+    ];
+    _0x4304 = function () {
+        return _0x24c92f;
+    };
+    return _0x4304();
+}
+dbConfig[_0x4fdc0e(0x206)]({ 'bots': [] })[_0x4fdc0e(0x1d2)]();
+const adapter2 = new FileSync(configpath + settingsfile), dbSettings = low(adapter2);
+dbSettings['defaults']({ 'settings': { 'timeshift': 0x0 } })['write']();
+const adapter3 = new FileSync(configpath + securefile), dbSecure = low(adapter3);
+dbSecure[_0x4fdc0e(0x206)]({
+    'secure': {},
+    'blacklist': []
+})['write']();
+let crypt = new Crypt({
+    'md': 'sha256',
+    'rsaStandard': 'RSA-OAEP'
+});
+const saltRounds = 0xa;
+let config = getConfiguration(), settings = getSettings(), secure = getSecure(), blacklist = getBlacklist(), newBot = ![], pid = [], socket = [], serverStatus = [];
+const serverversion = require('./' + bbpath + 'version.json')[_0x4fdc0e(0x2df)], maxSecretAge = 0xa, loginExpiry = 0x3c, tokenRefresh = 0x5;
+let lastIpApproval, telegramIpApproval, telegram2FaApproval, accessControl, token, uuid, externalip, pidExpireLogin, pidRefreshToken, pidAnalytics;
+oneTimeMigration(), cleanBlacklist();
+const PORT = 0xbb8, express = require(_0x4fdc0e(0x27d)), app = express(), http = require(_0x4fdc0e(0x288))[_0x4fdc0e(0x2ad)](app);
+function _0x2ca6(_0x494617, _0x456edd) {
+    const _0x4304f2 = _0x4304();
+    return _0x2ca6 = function (_0x2ca6b1, _0x1da3d8) {
+        _0x2ca6b1 = _0x2ca6b1 - 0x1bb;
+        let _0x43139c = _0x4304f2[_0x2ca6b1];
+        return _0x43139c;
+    }, _0x2ca6(_0x494617, _0x456edd);
+}
+app[_0x4fdc0e(0x2a7)](express['static'](path[_0x4fdc0e(0x21a)](__dirname, bbpath, _0x4fdc0e(0x258)))), app[_0x4fdc0e(0x2a7)](express[_0x4fdc0e(0x230)](path[_0x4fdc0e(0x21a)](__dirname, bbpath, _0x4fdc0e(0x256)))), app['get']('/', function (_0x1b0a42, _0x2f21ab) {
+    const _0x1c2ee8 = _0x4fdc0e;
+    _0x2f21ab['sendFile'](path[_0x1c2ee8(0x21a)](__dirname, bbpath, 'build2', _0x1c2ee8(0x26f)));
+}), app[_0x4fdc0e(0x1fa)](_0x4fdc0e(0x1cc), function (_0x16f1bd, _0x213225) {
+    const _0x29c0c6 = _0x4fdc0e;
+    _0x213225[_0x29c0c6(0x274)](path[_0x29c0c6(0x21a)](__dirname, bbpath, _0x29c0c6(0x256), _0x29c0c6(0x26f)));
+}), app[_0x4fdc0e(0x1fa)]('/:bot/portfolio', (_0x13e8b9, _0x2edeba) => {
+    const _0x40046e = _0x4fdc0e;
+    _0x2edeba[_0x40046e(0x274)](path['join'](__dirname, bbpath, 'build', _0x40046e(0x26f)));
+}), app[_0x4fdc0e(0x1fa)](_0x4fdc0e(0x253), (_0x328852, _0x2c8eab) => {
+    const _0x500fa1 = _0x4fdc0e;
+    _0x2c8eab['sendFile'](path[_0x500fa1(0x21a)](__dirname, bbpath, 'build', _0x500fa1(0x26f)));
+}), app[_0x4fdc0e(0x1fa)](_0x4fdc0e(0x25b), (_0x17f376, _0x16d12c) => {
+    const _0x5284f7 = _0x4fdc0e;
+    _0x16d12c[_0x5284f7(0x274)](path['join'](__dirname, bbpath, 'build', _0x5284f7(0x26f)));
+}), app[_0x4fdc0e(0x1fa)](_0x4fdc0e(0x1c8), (_0x5f905b, _0x22c6be) => {
+    const _0x190fea = _0x4fdc0e;
+    _0x22c6be[_0x190fea(0x274)](path['join'](__dirname, bbpath, 'build', _0x190fea(0x26f)));
+}), app[_0x4fdc0e(0x1fa)](_0x4fdc0e(0x224), (_0x37a33c, _0x1499bf) => {
+    const _0x3552d4 = _0x4fdc0e;
+    _0x1499bf[_0x3552d4(0x274)](path[_0x3552d4(0x21a)](__dirname, bbpath, _0x3552d4(0x256), _0x3552d4(0x26f)));
+}), app[_0x4fdc0e(0x1fa)](_0x4fdc0e(0x1cd), (_0x4a1bea, _0x392d12) => {
+    const _0x5caa42 = _0x4fdc0e;
+    _0x392d12[_0x5caa42(0x274)](path['join'](__dirname, bbpath, _0x5caa42(0x256), _0x5caa42(0x26f)));
+}), http[_0x4fdc0e(0x2b3)](PORT);
+const analytics = analyticsLib({
+        'app': _0x4fdc0e(0x2ca),
+        'plugins': [googleAnalytics({ 'trackingId': _0x4fdc0e(0x1f6) })]
+    }), TelegramBot = require(_0x4fdc0e(0x25d));
+let tgBot;
+if (settings[_0x4fdc0e(0x266)] && settings[_0x4fdc0e(0x266)] != '' && settings[_0x4fdc0e(0x2bc)] && settings[_0x4fdc0e(0x2bc)] != '')
+    initTelegram();
+initStates(), startServer(), startSocket(), startAnalytics();
+function startServer() {
+    const _0x923934 = _0x4fdc0e;
+    console[_0x923934(0x290)](''), console[_0x923934(0x290)](_0x923934(0x1da)), logging(_0x923934(0x24d) + PORT), console[_0x923934(0x290)](_0x923934(0x1da));
+    if (config['length'] != 0x0)
+        config['forEach'](_0x1de266 => {
+            const _0x1ca8c2 = _0x923934;
+            if (_0x1de266['status'] == 'enabled' || _0x1de266[_0x1ca8c2(0x23b)] == _0x1ca8c2(0x237))
+                logging('starting\x20bot\x20|\x20Bot\x20' + _0x1de266[_0x1ca8c2(0x267)] + _0x1ca8c2(0x273) + _0x1de266['botname']), startBot([_0x1de266['botID']], { 'cwd': bbpath }, function (_0x4e37cd) {
+                    if (_0x4e37cd)
+                        logging(_0x4e37cd);
+                });
+            else
+                (_0x1de266[_0x1ca8c2(0x23b)] == 'disabled' || _0x1de266[_0x1ca8c2(0x23b)] == _0x1ca8c2(0x1ee)) && logging(_0x1ca8c2(0x251) + _0x1de266[_0x1ca8c2(0x267)] + _0x1ca8c2(0x273) + _0x1de266[_0x1ca8c2(0x1e3)]);
+        });
+    else
+        !newBot && console[_0x923934(0x290)](_0x923934(0x2b6));
+    if (newBot)
+        addBot();
+    console[_0x923934(0x290)](_0x923934(0x1da)), console[_0x923934(0x290)]('');
+}
+function startSocket() {
+    const _0x189096 = _0x4fdc0e, _0x37605a = require(_0x189096(0x2b5))(http, {});
+    _0x37605a['on'](_0x189096(0x280), _0x5597fe => {
+        const _0x462fcd = _0x189096;
+        let _0x300743, _0x211184, _0x5cee7a;
+        const _0x2dcb49 = _0x5597fe[_0x462fcd(0x270)][_0x462fcd(0x1c6)][_0x462fcd(0x2b4)], _0x507b49 = _0x5597fe['handshake'][_0x462fcd(0x1be)][_0x462fcd(0x2bd)];
+        if (!_0x507b49)
+            _0x5597fe['emit']('status', { 'publicKey': secure[_0x462fcd(0x1e2)] });
+        else {
+            uuid = timelyDecrypt(_0x5597fe['handshake'][_0x462fcd(0x1be)][_0x462fcd(0x2bd)], ![]), _0x211184 = _0x2dcb49[_0x462fcd(0x2d5)](/bot[0-9]{3}/);
+            if (_0x211184)
+                _0x5cee7a = _0x211184[0x0][_0x462fcd(0x2d5)](/[0-9]{3}/);
+            if (_0x5cee7a)
+                _0x300743 = _0x5cee7a[0x0];
+            else
+                _0x300743 = _0x462fcd(0x1d9);
+            if (socket[_0x300743])
+                socket[_0x300743][_0x462fcd(0x203)](!![]);
+            socket[_0x300743] = _0x5597fe, setAccess(_0x300743);
+            if (accessControl[_0x462fcd(0x268)]) {
+                if (_0x300743 == _0x462fcd(0x1d9))
+                    initializeSocketBotManager();
+                else
+                    initializeSocketBot(_0x300743);
+            }
+            if (!serverStatus[_0x300743])
+                serverStatus[_0x300743] = _0x462fcd(0x296);
+            socket[_0x300743]['on'](_0x462fcd(0x2a8), _0xa67aca => {
+                const _0x6e55a9 = _0x462fcd, _0x16b949 = timelyDecrypt(_0xa67aca[_0x6e55a9(0x248)]);
+                if (_0x16b949) {
+                    _0xa67aca = {
+                        'username': _0xa67aca[_0x6e55a9(0x28e)],
+                        'password': _0x16b949
+                    };
+                    let _0x459f0c = validateCredentials(_0xa67aca);
+                    if (_0x459f0c[_0x6e55a9(0x268)] == ![] && _0x459f0c[_0x6e55a9(0x226)] == _0x6e55a9(0x218))
+                        socket[_0x300743]['emit']('status', { 'access': _0x459f0c }), loginAccess2FA(externalip);
+                    else {
+                        if (_0x459f0c[_0x6e55a9(0x268)] == ![] && _0x459f0c[_0x6e55a9(0x226)] == _0x6e55a9(0x1d1))
+                            socket[_0x300743][_0x6e55a9(0x2c1)](_0x6e55a9(0x23b), { 'access': _0x459f0c });
+                        else {
+                            if (_0x459f0c[_0x6e55a9(0x268)] && _0x459f0c['reason'] == _0x6e55a9(0x241)) {
+                                token = _0x459f0c[_0x6e55a9(0x201)];
+                                for (let _0x23158e in socket) {
+                                    if (_0x23158e == _0x6e55a9(0x1d9))
+                                        initializeSocketBotManager();
+                                    else
+                                        initializeSocketBot(_0x23158e);
+                                    socket[_0x23158e][_0x6e55a9(0x2c1)](_0x6e55a9(0x23b), {
+                                        'status': serverStatus[_0x23158e] || 'starting',
+                                        'serverversion': serverversion,
+                                        'servertime': getServerTime(),
+                                        'access': _0x459f0c,
+                                        'externalip': externalip,
+                                        'publicKey': secure[_0x6e55a9(0x1e2)],
+                                        'loginNow': ![]
+                                    });
+                                }
+                                setTokenRefresh(), setSessionTimeout('login');
+                            }
+                        }
+                    }
+                } else
+                    logging(_0x6e55a9(0x299));
+            }), socket[_0x300743]['on'](_0x462fcd(0x1f8), () => {
+                resetPassword();
+            }), socket[_0x300743]['on'](_0x462fcd(0x203), _0x594a43 => {
+                let _0x539e63 = [];
+                for (let _0x2cc4b3 in socket) {
+                    if (_0x2cc4b3 != _0x300743)
+                        _0x539e63[_0x2cc4b3] = socket[_0x2cc4b3];
+                }
+                socket = _0x539e63;
+            });
+            if (_0x300743 != _0x462fcd(0x1d9) && config[_0x462fcd(0x22a)] != '') {
+                if (pid[_0x300743])
+                    pid[_0x300743]['send']({
+                        'function': _0x462fcd(0x28b),
+                        'args': null
+                    });
+            }
+        }
+    });
+}
+function setAccess(_0x35932d) {
+    const _0x4c57d1 = _0x4fdc0e;
+    externalip = normalizeIP(socket[_0x35932d][_0x4c57d1(0x219)][_0x4c57d1(0x26a)])[_0x4c57d1(0x29e)], accessControl = validateAccess(token), accessControl[_0x4c57d1(0x201)] && accessControl['reason'] == 'temporary\x20token\x20generated' && setSessionTimeout('2FA'), accessControl[_0x4c57d1(0x201)] && accessControl[_0x4c57d1(0x226)] == _0x4c57d1(0x1ce) && setSessionTimeout(_0x4c57d1(0x2a8)), socket[_0x35932d][_0x4c57d1(0x2c1)](_0x4c57d1(0x23b), {
+        'status': serverStatus[_0x35932d] || _0x4c57d1(0x264),
+        'serverversion': serverversion,
+        'servertime': getServerTime(),
+        'access': accessControl,
+        'externalip': externalip,
+        'publicKey': secure[_0x4c57d1(0x1e2)],
+        'loginNow': accessControl['reason'] == _0x4c57d1(0x2be) || accessControl[_0x4c57d1(0x226)] == _0x4c57d1(0x218)
+    }), accessControl['allow'] == ![] && accessControl['reason'] == _0x4c57d1(0x1bf) && temporaryAccess2FA(externalip);
+}
+function setSessionTimeout(_0x1e7002) {
+    const _0x250fe3 = _0x4fdc0e;
+    let _0x333e88;
+    if (_0x1e7002 == _0x250fe3(0x2a8))
+        _0x333e88 = loginExpiry * 0x3c * 0x3e8;
+    else
+        _0x333e88 = telegramIpApproval[_0x250fe3(0x2da)] * 0x3c * 0x3e8 - (new Date()[_0x250fe3(0x2c4)]() - telegramIpApproval[_0x250fe3(0x28f)]);
+    if (pidExpireLogin)
+        clearTimeout(pidExpireLogin);
+    pidExpireLogin = setTimeout(() => {
+        const _0x3d0c2b = _0x250fe3;
+        if (pidRefreshToken)
+            clearTimeout(pidRefreshToken);
+        addBlacklist(), telegramIpApproval = null, telegram2FaApproval = null;
+        let _0x4cdd01 = validateAccess(token);
+        if (!(_0x4cdd01['allow'] && _0x4cdd01[_0x3d0c2b(0x226)] == _0x3d0c2b(0x24f)))
+            for (let _0x291c1b in socket) {
+                socket[_0x291c1b][_0x3d0c2b(0x2c1)]('status', {
+                    'access': {
+                        'allow': ![],
+                        'reason': 'access\x20timeout',
+                        'token': null
+                    }
+                });
+            }
+        token = null;
+    }, _0x333e88);
+}
+function setTokenRefresh() {
+    if (pidRefreshToken)
+        clearTimeout(pidRefreshToken);
+    pidRefreshToken = setTimeout(() => {
+        const _0x1f221b = _0x2ca6;
+        let _0x49ced1 = refreshToken();
+        for (let _0x3d05c9 in socket) {
+            socket[_0x3d05c9]['emit'](_0x1f221b(0x23b), {
+                'status': serverStatus[_0x3d05c9] || _0x1f221b(0x264),
+                'serverversion': serverversion,
+                'servertime': getServerTime(),
+                'access': _0x49ced1,
+                'externalip': externalip,
+                'publicKey': secure[_0x1f221b(0x1e2)],
+                'loginNow': ![]
+            });
+        }
+        setTokenRefresh();
+    }, (tokenRefresh - 0x1) * 0x3c * 0x3e8);
+}
+function initializeSocketBotManager() {
+    const _0x121d3b = _0x4fdc0e;
+    socket['botmanager'][_0x121d3b(0x2c1)](_0x121d3b(0x1d8), config), socket[_0x121d3b(0x1d9)][_0x121d3b(0x2c1)](_0x121d3b(0x1f3), cleanSettings()), socket[_0x121d3b(0x1d9)]['on'](_0x121d3b(0x285), _0x5e2f51 => {
+        const _0x260c81 = _0x121d3b;
+        if (validateAccess(_0x5e2f51)[_0x260c81(0x268)])
+            addBot();
+        else
+            logging(_0x260c81(0x2c6));
+    }), socket['botmanager']['on']('update-bot', (_0x42360a, _0x2b0675) => {
+        const _0x59bb7e = _0x121d3b;
+        if (validateAccess(_0x2b0675)[_0x59bb7e(0x268)])
+            toggleBot(_0x42360a[_0x59bb7e(0x267)], _0x42360a[_0x59bb7e(0x23b)], _0x42360a[_0x59bb7e(0x21b)]);
+        else
+            logging(_0x59bb7e(0x1db));
+    }), socket[_0x121d3b(0x1d9)]['on'](_0x121d3b(0x2d8), (_0x59e09, _0x2e098a) => {
+        const _0x58d08a = _0x121d3b;
+        if (validateAccess(_0x2e098a)[_0x58d08a(0x268)])
+            deleteBot(_0x59e09);
+        else
+            logging(_0x58d08a(0x243));
+    }), socket['botmanager']['on'](_0x121d3b(0x236), (_0xc5e66c, _0x57d92b) => {
+        const _0xb1fe25 = _0x121d3b;
+        if (validateAccess(_0x57d92b)[_0xb1fe25(0x268)])
+            storeSettings(_0xc5e66c, !![]);
+        else
+            logging(_0xb1fe25(0x1c1));
+    }), socket['botmanager']['on'](_0x121d3b(0x292), _0x154a70 => {
+        const _0x262885 = _0x121d3b;
+        if (validateAccess(_0x154a70)[_0x262885(0x268)]) {
+            if (pidRefreshToken)
+                clearTimeout(pidRefreshToken);
+            if (pidExpireLogin)
+                clearTimeout(pidExpireLogin);
+            removeSocketListeners(), addBlacklist(), telegramIpApproval = null, telegram2FaApproval = null, token = null;
+            for (let _0x768149 in socket) {
+                socket[_0x768149][_0x262885(0x2c1)](_0x262885(0x23b), {
+                    'access': {
+                        'allow': ![],
+                        'reason': _0x262885(0x2a5),
+                        'token': null
+                    }
+                });
+            }
+        } else
+            logging('Unauthorized\x20attempt\x20to\x20log\x20out');
+    });
+}
+function initializeSocketBot(_0x30291f) {
+    const _0x10dc2a = _0x4fdc0e;
+    socket[_0x30291f]['on'](_0x10dc2a(0x23e), (_0x30ea04, _0x175bef) => {
+        const _0x2b5f08 = _0x10dc2a;
+        if (validateAccess(_0x175bef)['allow']) {
+            if (pid[_0x30291f])
+                pid[_0x30291f][_0x2b5f08(0x27b)]({
+                    'function': _0x2b5f08(0x1e5),
+                    'args': _0x30ea04
+                });
+        } else
+            logging(_0x2b5f08(0x1d0));
+    }), socket[_0x30291f]['on'](_0x10dc2a(0x291), (_0x2cc142, _0x579539) => {
+        const _0x15e9c4 = _0x10dc2a;
+        if (validateAccess(_0x579539)[_0x15e9c4(0x268)]) {
+            if (pid[_0x30291f])
+                pid[_0x30291f][_0x15e9c4(0x27b)]({
+                    'function': _0x15e9c4(0x2c0),
+                    'args': _0x2cc142
+                });
+        } else
+            logging('Unauthorized\x20attempt\x20to\x20get\x20portfolio');
+    }), socket[_0x30291f]['on'](_0x10dc2a(0x276), (_0x1df10d, _0x3e4d25) => {
+        const _0x1a18e8 = _0x10dc2a;
+        if (validateAccess(_0x3e4d25)[_0x1a18e8(0x268)]) {
+            if (pid[_0x30291f])
+                pid[_0x30291f]['send']({
+                    'function': _0x1a18e8(0x1fc),
+                    'args': _0x1df10d
+                });
+        } else
+            logging(_0x1a18e8(0x281));
+    }), socket[_0x30291f]['on'](_0x10dc2a(0x2b0), (_0x20c61e, _0x15e5de) => {
+        const _0xe79714 = _0x10dc2a;
+        if (validateAccess(_0x15e5de)['allow']) {
+            if (pid[_0x30291f])
+                pid[_0x30291f][_0xe79714(0x27b)]({
+                    'function': _0xe79714(0x2c7),
+                    'args': _0x20c61e
+                });
+        } else
+            logging(_0xe79714(0x20f));
+    }), socket[_0x30291f]['on'](_0x10dc2a(0x250), _0x3087ff => {
+        const _0x12f74d = _0x10dc2a;
+        if (validateAccess(_0x3087ff)[_0x12f74d(0x268)]) {
+            if (pid[_0x30291f])
+                pid[_0x30291f]['send']({
+                    'function': _0x12f74d(0x277),
+                    'args': null
+                });
+        } else
+            logging(_0x12f74d(0x1ea));
+    }), socket[_0x30291f]['on'](_0x10dc2a(0x205), (_0x57072c, _0x591ed6) => {
+        const _0x55abb4 = _0x10dc2a;
+        if (validateAccess(_0x591ed6)[_0x55abb4(0x268)]) {
+            if (pid[_0x30291f])
+                pid[_0x30291f]['send']({
+                    'function': _0x55abb4(0x298),
+                    'args': _0x57072c
+                });
+        } else
+            logging(_0x55abb4(0x1eb));
+    }), socket[_0x30291f]['on'](_0x10dc2a(0x292), _0x1abb48 => {
+        const _0x3568a4 = _0x10dc2a;
+        if (validateAccess(_0x1abb48)[_0x3568a4(0x268)]) {
+            if (pidRefreshToken)
+                clearTimeout(pidRefreshToken);
+            if (pidExpireLogin)
+                clearTimeout(pidExpireLogin);
+            removeSocketListeners(), addBlacklist(), telegramIpApproval = null, telegram2FaApproval = null, token = null;
+            for (let _0x3d538a in socket) {
+                socket[_0x3d538a]['emit'](_0x3568a4(0x23b), {
+                    'access': {
+                        'allow': ![],
+                        'reason': 'logged\x20out',
+                        'token': null
+                    }
+                });
+            }
+        } else
+            logging(_0x3568a4(0x25e));
+    });
+}
+function removeSocketListeners() {
+    const _0x5e7e3d = _0x4fdc0e;
+    for (let _0x56e846 in socket) {
+        socket[_0x56e846][_0x5e7e3d(0x24b)]();
+    }
+}
+function cleanSettings() {
+    const _0x19a8dd = _0x4fdc0e;
+    let _0x54a2e9 = settings;
+    return settings[_0x19a8dd(0x266)] && settings[_0x19a8dd(0x266)] != '' && (_0x54a2e9 = {
+        ..._0x54a2e9,
+        'telegramToken': _0x19a8dd(0x239)
+    }), settings[_0x19a8dd(0x225)] && settings[_0x19a8dd(0x225)] != '' && (_0x54a2e9 = {
+        ..._0x54a2e9,
+        'bbPassword': '************'
+    }), _0x54a2e9;
+}
+function startBot(_0x322bdb, _0x2cec30, _0x5c5b23) {
+    const _0x41abb0 = _0x4fdc0e;
+    let _0x4e26db = ![];
+    const _0x33e4f8 = _0x322bdb[0x0];
+    _0x2cec30 = {
+        ..._0x2cec30,
+        'stdio': [
+            'inherit',
+            _0x41abb0(0x21d),
+            'inherit',
+            _0x41abb0(0x2a0)
+        ]
+    }, pid[_0x33e4f8] = childProcess[_0x41abb0(0x2c9)](botfile, _0x322bdb, _0x2cec30), pid[_0x33e4f8]['on']('message', _0x3f320d => {
+        const _0x3906e8 = _0x41abb0;
+        switch (Object[_0x3906e8(0x207)](_0x3f320d)[0x0]) {
+        case _0x3906e8(0x1e3):
+            updateBotName(_0x33e4f8, _0x3f320d['botname']);
+            break;
+        case _0x3906e8(0x23b):
+            updateStatus(_0x33e4f8, _0x3f320d[_0x3906e8(0x23b)]);
+            break;
+        case _0x3906e8(0x21b):
+            updateLive(_0x33e4f8, _0x3f320d[_0x3906e8(0x21b)]);
+            break;
+        case _0x3906e8(0x2ba):
+            updateLive(_0x33e4f8, _0x3f320d['started']);
+            if (socket[_0x33e4f8])
+                socket[_0x33e4f8][_0x3906e8(0x2c1)](_0x3906e8(0x23b), {
+                    'access': {
+                        'allow': ![],
+                        'reason': _0x3906e8(0x21c),
+                        'token': null
+                    }
+                });
+            break;
+        case _0x3906e8(0x1d4):
+            sendTelegram(_0x33e4f8, _0x3f320d['telegram']);
+            break;
+        case _0x3906e8(0x1bb):
+            if (socket[_0x33e4f8])
+                socket[_0x33e4f8]['emit'](_0x3f320d['function'], _0x3f320d[_0x3906e8(0x2a9)]);
+            break;
+        }
+    }), pid[_0x33e4f8]['on']('error', function (_0x29a41c) {
+        if (_0x4e26db)
+            return;
+        _0x4e26db = !![], _0x5c5b23(_0x29a41c);
+    }), pid[_0x33e4f8]['on'](_0x41abb0(0x25f), function (_0x11be4e) {
+        const _0x27ab6f = _0x41abb0;
+        if (_0x4e26db)
+            return;
+        _0x4e26db = !![], _0x5c5b23(null);
+        const _0x16ba47 = dbConfig[_0x27ab6f(0x1fa)](_0x27ab6f(0x1d8))['find']({ 'botID': _0x33e4f8 })[_0x27ab6f(0x1f4)]();
+        _0x16ba47 && (_0x16ba47[_0x27ab6f(0x23b)] == 'enabled' || _0x16ba47[_0x27ab6f(0x23b)] == _0x27ab6f(0x237)) && (updateLive(_0x33e4f8, _0x27ab6f(0x22b)), _0x11be4e != 0x4d && (logging('restarting\x20Bot\x20' + _0x33e4f8), startBot([_0x33e4f8], { 'cwd': bbpath }, function (_0x22b2a4) {
+            if (_0x22b2a4)
+                logging(_0x22b2a4);
+        })));
+    });
+}
+function stopBot(_0x5913f7) {
+    const _0x308478 = _0x4fdc0e;
+    if (socket[_0x5913f7])
+        socket[_0x5913f7][_0x308478(0x203)](!![]);
+    if (pid[_0x5913f7])
+        pid[_0x5913f7]['kill']();
+}
+function addBot() {
+    const _0x43e621 = _0x4fdc0e;
+    let _0x1f89d8;
+    for (let _0x49b68 = 0x1; _0x49b68 < 0x3e9; _0x49b68++) {
+        _0x1f89d8 = _0x49b68[_0x43e621(0x23d)]()[_0x43e621(0x2cb)](0x3, '0');
+        let _0xc83045 = config[_0x43e621(0x2ac)](_0xd54694 => _0xd54694[_0x43e621(0x267)] == _0x1f89d8);
+        if (!_0xc83045)
+            break;
+    }
+    if (_0x1f89d8 === '1000') {
+        logging('the\x20maximum\x20of\x20999\x20bots\x20has\x20been\x20reached');
+        return;
+    }
+    logging(_0x43e621(0x1bd) + _0x1f89d8), dbConfig['get'](_0x43e621(0x1d8))[_0x43e621(0x275)]({
+        'botID': _0x1f89d8,
+        'botname': _0x43e621(0x22d) + _0x1f89d8,
+        'status': _0x43e621(0x237),
+        'live': ''
+    })['write'](), startBot([_0x1f89d8], { 'cwd': bbpath }, function (_0x254dde) {
+        if (_0x254dde)
+            logging(_0x254dde);
+    }), config = getConfiguration();
+    if (socket['botmanager'])
+        socket[_0x43e621(0x1d9)][_0x43e621(0x2c1)](_0x43e621(0x1d8), config);
+}
+function deleteBot(_0x3f76a1) {
+    const _0x372374 = _0x4fdc0e;
+    if (socket[_0x3f76a1])
+        socket[_0x3f76a1][_0x372374(0x203)](!![]);
+    dbConfig['get'](_0x372374(0x1d8))[_0x372374(0x21f)]({ 'botID': _0x3f76a1 })['write'](), logging(_0x372374(0x1ca) + _0x3f76a1), stopBot(_0x3f76a1);
+    try {
+        fs[_0x372374(0x1fd)](path[_0x372374(0x21a)](configpath, _0x372374(0x227) + _0x3f76a1 + _0x372374(0x2ce))), fs[_0x372374(0x1fd)](path['join'](configpath, _0x372374(0x227) + _0x3f76a1 + _0x372374(0x1e1))), fs['unlinkSync'](path[_0x372374(0x21a)](configpath, _0x372374(0x227) + _0x3f76a1 + _0x372374(0x1cb))), fs[_0x372374(0x1fd)](path[_0x372374(0x21a)](configpath, _0x372374(0x227) + _0x3f76a1 + _0x372374(0x1fb)));
+    } catch (_0x3e2d7d) {
+        if (_0x3e2d7d)
+            logging(_0x372374(0x1dd), _0x3e2d7d);
+    }
+    config = getConfiguration();
+    if (socket['botmanager'])
+        socket[_0x372374(0x1d9)][_0x372374(0x2c1)](_0x372374(0x1d8), config);
+}
+function toggleBot(_0x17149a, _0x3a7eed, _0x5af3cb) {
+    const _0x4b5f39 = _0x4fdc0e;
+    dbConfig[_0x4b5f39(0x1fa)]('bots')[_0x4b5f39(0x2ac)]({ 'botID': _0x17149a })[_0x4b5f39(0x1e4)]({ 'status': _0x3a7eed })[_0x4b5f39(0x1e4)]({ 'live': _0x5af3cb })[_0x4b5f39(0x1d2)]();
+    if (_0x3a7eed == _0x4b5f39(0x1c7) || _0x3a7eed == _0x4b5f39(0x237))
+        logging(_0x4b5f39(0x1e9) + _0x17149a), startBot([_0x17149a], { 'cwd': bbpath }, function (_0x2f326b) {
+            if (_0x2f326b)
+                logging(_0x2f326b);
+        });
+    else
+        (_0x3a7eed == _0x4b5f39(0x221) || _0x3a7eed == _0x4b5f39(0x1ee)) && (logging(_0x4b5f39(0x1df) + _0x17149a), stopBot(_0x17149a));
+    config = getConfiguration();
+    if (socket['botmanager'])
+        socket['botmanager']['emit']('bots', config);
+}
+function updateStatus(_0xf13e3, _0x5a634d) {
+    const _0x1d18db = _0x4fdc0e;
+    dbConfig['get'](_0x1d18db(0x1d8))['find']({ 'botID': _0xf13e3 })[_0x1d18db(0x1e4)]({ 'status': _0x5a634d })[_0x1d18db(0x1d2)](), config = getConfiguration();
+    if (socket['botmanager'])
+        socket[_0x1d18db(0x1d9)][_0x1d18db(0x2c1)](_0x1d18db(0x1d8), config);
+}
+function updateLive(_0x88ecb8, _0x4b037c) {
+    const _0x294235 = _0x4fdc0e;
+    dbConfig[_0x294235(0x1fa)](_0x294235(0x1d8))[_0x294235(0x2ac)]({ 'botID': _0x88ecb8 })[_0x294235(0x1e4)]({ 'live': _0x4b037c })[_0x294235(0x1d2)](), config = getConfiguration();
+    if (socket[_0x294235(0x1d9)])
+        socket[_0x294235(0x1d9)][_0x294235(0x2c1)](_0x294235(0x1d8), config);
+}
+function updateBotName(_0x3dcc01, _0x366efa) {
+    const _0x33365f = _0x4fdc0e;
+    dbConfig[_0x33365f(0x1fa)](_0x33365f(0x1d8))[_0x33365f(0x2ac)]({ 'botID': _0x3dcc01 })['assign']({ 'botname': _0x366efa })[_0x33365f(0x1d2)](), config = getConfiguration();
+    if (socket[_0x33365f(0x1d9)])
+        socket['botmanager'][_0x33365f(0x2c1)]('bots', config);
+}
+function telegramError(_0x3d1c2) {
+    const _0x574e3b = _0x4fdc0e;
+    console[_0x574e3b(0x290)](getTimeStamp() + _0x574e3b(0x242));
+}
+function validateTelegram(_0x540f92) {
+    const _0x10c996 = _0x4fdc0e;
+    if (_0x540f92[_0x10c996(0x255)][_0x10c996(0x28e)] != settings['telegramUsername'] && '@' + _0x540f92[_0x10c996(0x255)]['username'] != settings['telegramUsername'])
+        return tgBot[_0x10c996(0x27a)](_0x540f92[_0x10c996(0x220)]['id'], 'Unauthorized\x20user\x20-\x20make\x20sure\x20you\x27ve\x20entered\x20your\x20<b>personal</b>\x20Telegram\x20username\x20in\x20the\x20Bot\x20Manager\x27s\x20settings', { 'parse_mode': _0x10c996(0x287) })['catch'](_0x309ec4 => {
+            telegramError(_0x309ec4);
+        }), ![];
+    return !![];
+}
+async function initTelegram() {
+    const _0x3aea26 = _0x4fdc0e;
+    if (tgBot)
+        tgBot[_0x3aea26(0x211)](), tgBot = null, initTelegram();
+    else {
+        tgBot = new TelegramBot(settings['telegramToken'], { 'polling': !![] });
+        let _0x23c5ac = 'You\x20can\x20use\x20the\x20following\x20commands:\x0a';
+        _0x23c5ac += '\x0a', _0x23c5ac += _0x3aea26(0x1d7), _0x23c5ac += '/disable\x20-\x20disable\x20notifications\x0a', _0x23c5ac += _0x3aea26(0x1ef), _0x23c5ac += '/restart\x20-\x20restart\x20a\x20bot\x0a', _0x23c5ac += _0x3aea26(0x2d3), _0x23c5ac += '/help\x20-\x20show\x20avaiable\x20commands\x0a';
+        let _0x1a2176 = _0x3aea26(0x20c);
+        _0x1a2176 += '\x0a', _0x1a2176 += _0x23c5ac, tgBot[_0x3aea26(0x284)](/\/start/, _0x3c3d62 => {
+            const _0x196508 = _0x3aea26;
+            if (!validateTelegram(_0x3c3d62))
+                return;
+            if (settings['telegramChatId'] != _0x3c3d62[_0x196508(0x220)]['id'])
+                updateSetting('telegramChatId', _0x3c3d62[_0x196508(0x220)]['id']);
+            updateSetting(_0x196508(0x1cf), !![]), tgBot[_0x196508(0x27a)](_0x3c3d62['chat']['id'], _0x1a2176)[_0x196508(0x1c3)](_0x6bd99b => {
+                telegramError(_0x6bd99b);
+            });
+        }), tgBot[_0x3aea26(0x284)](/\/enable/, _0x498778 => {
+            const _0x1c20c8 = _0x3aea26;
+            if (!validateTelegram(_0x498778))
+                return;
+            if (settings[_0x1c20c8(0x200)] != _0x498778[_0x1c20c8(0x220)]['id'])
+                updateSetting(_0x1c20c8(0x200), _0x498778['chat']['id']);
+            updateSetting(_0x1c20c8(0x1cf), !![]), tgBot['sendMessage'](_0x498778[_0x1c20c8(0x220)]['id'], _0x1c20c8(0x2db))['catch'](_0x43c4a7 => {
+                telegramError(_0x43c4a7);
+            });
+        }), tgBot[_0x3aea26(0x284)](/\/config/, async _0x5589c4 => {
+            const _0x5f51c3 = _0x3aea26;
+            if (!validateTelegram(_0x5589c4))
+                return;
+            tgBot[_0x5f51c3(0x1c4)](_0x5f51c3(0x22c)), tgBot[_0x5f51c3(0x27a)](_0x5589c4['chat']['id'], 'Of\x20which\x20events\x20do\x20you\x20want\x20to\x20be\x20notified?', {
+                'reply_markup': {
+                    'inline_keyboard': [[
+                            {
+                                'text': 'Orders',
+                                'callback_data': _0x5f51c3(0x1ec)
+                            },
+                            {
+                                'text': 'Alerts',
+                                'callback_data': 'alerts'
+                            },
+                            {
+                                'text': _0x5f51c3(0x261),
+                                'callback_data': _0x5f51c3(0x238)
+                            }
+                        ]]
+                }
+            })['catch'](_0x73f9ce => {
+                telegramError(_0x73f9ce);
+            }), tgBot['on'](_0x5f51c3(0x22c), async _0x1b2c82 => {
+                const _0x7b6b12 = _0x5f51c3, _0x4e9905 = _0x1b2c82[_0x7b6b12(0x286)], _0xd219f7 = _0x1b2c82['message'];
+                tgBot[_0x7b6b12(0x2bf)](_0x1b2c82['id'])[_0x7b6b12(0x232)](async () => {
+                    const _0x2923c6 = _0x7b6b12;
+                    _0x4e9905 == 'orders' && (updateSetting(_0x2923c6(0x2d1), _0x2923c6(0x1ec)), updateSetting(_0x2923c6(0x1cf), !![]), await tgBot[_0x2923c6(0x27a)](_0xd219f7[_0x2923c6(0x220)]['id'], _0x2923c6(0x214))['catch'](_0x29b550 => {
+                        telegramError(_0x29b550);
+                    }));
+                    _0x4e9905 == _0x2923c6(0x2d7) && (updateSetting(_0x2923c6(0x2d1), _0x2923c6(0x2d7)), updateSetting('telegramEnabled', !![]), await tgBot[_0x2923c6(0x27a)](_0xd219f7[_0x2923c6(0x220)]['id'], _0x2923c6(0x28d))['catch'](_0x44bbcb => {
+                        telegramError(_0x44bbcb);
+                    }));
+                    _0x4e9905 == _0x2923c6(0x238) && (updateSetting('telegramEvents', 'all'), updateSetting(_0x2923c6(0x1cf), !![]), await tgBot[_0x2923c6(0x27a)](_0xd219f7[_0x2923c6(0x220)]['id'], _0x2923c6(0x2ae))[_0x2923c6(0x1c3)](_0x1b7904 => {
+                        telegramError(_0x1b7904);
+                    }));
+                    if (!settings[_0x2923c6(0x200)])
+                        tgBot['sendMessage'](_0xd219f7[_0x2923c6(0x220)]['id'], _0x2923c6(0x2d9))['catch'](_0x40c940 => {
+                            telegramError(_0x40c940);
+                        });
+                }), tgBot[_0x7b6b12(0x1c4)](_0x7b6b12(0x22c));
+            });
+        }), tgBot[_0x3aea26(0x284)](/\/status/, _0x1353dd => {
+            const _0xa2b3f5 = _0x3aea26;
+            if (!validateTelegram(_0x1353dd))
+                return;
+            let _0x44c7e5 = _0xa2b3f5(0x20d);
+            config[_0xa2b3f5(0x26b)](_0xcd549f => {
+                const _0xcbeb59 = _0xa2b3f5;
+                _0x44c7e5 += _0xcbeb59(0x22d) + _0xcd549f[_0xcbeb59(0x267)] + '\x20|\x20' + _0xcd549f[_0xcbeb59(0x1e3)] + ':\x20' + _0xcd549f[_0xcbeb59(0x23b)] + _0xcbeb59(0x235) + _0xcd549f[_0xcbeb59(0x21b)] + '\x0a';
+            }), _0x44c7e5 += '\x0a', _0x44c7e5 += _0xa2b3f5(0x2bb), _0x44c7e5 += !settings[_0xa2b3f5(0x1cf)] ? _0xa2b3f5(0x23f) : 'Notifications\x20enabled\x0a', _0x44c7e5 += settings[_0xa2b3f5(0x1cf)] ? settings[_0xa2b3f5(0x2d1)] == _0xa2b3f5(0x238) ? 'Notifications\x20types:\x20orders\x20and\x20alerts\x0a' : _0xa2b3f5(0x283) + settings[_0xa2b3f5(0x2d1)] + _0xa2b3f5(0x233) : '', tgBot[_0xa2b3f5(0x27a)](_0x1353dd[_0xa2b3f5(0x220)]['id'], _0x44c7e5, { 'parse_mode': _0xa2b3f5(0x287) })[_0xa2b3f5(0x1c3)](_0x1db646 => {
+                telegramError(_0x1db646);
+            });
+        }), tgBot[_0x3aea26(0x284)](/\/restart/, _0x1a3966 => {
+            const _0x312e4c = _0x3aea26;
+            if (!validateTelegram(_0x1a3966))
+                return;
+            tgBot[_0x312e4c(0x1c4)](_0x312e4c(0x22c));
+            const _0x4c3a8e = getEnabledBots();
+            if (_0x4c3a8e[_0x312e4c(0x29b)] == 0x0)
+                tgBot[_0x312e4c(0x27a)](_0x1a3966[_0x312e4c(0x220)]['id'], 'No\x20bots\x20enabled\x20right\x20now')['catch'](_0x381462 => {
+                    telegramError(_0x381462);
+                });
+            else {
+                let _0x2fecb2 = [], _0x3352a6 = [];
+                const _0x26212f = _0x4c3a8e[_0x312e4c(0x29b)] % 0x4 == 0x0 || _0x4c3a8e[_0x312e4c(0x29b)] % 0x4 == 0x3 || _0x4c3a8e[_0x312e4c(0x29b)] % 0x3 == 0x1 ? 0x4 : 0x3;
+                let _0xd67340 = 0x0;
+                _0x4c3a8e[_0x312e4c(0x26b)]((_0x56bae1, _0x4bfa0c) => {
+                    const _0x16bf4a = _0x312e4c;
+                    if (_0x4bfa0c % _0x26212f == 0x0)
+                        _0x3352a6 = [];
+                    _0x3352a6[_0x16bf4a(0x275)]({
+                        'text': _0x16bf4a(0x22d) + _0x56bae1[_0x16bf4a(0x267)],
+                        'callback_data': _0x56bae1[_0x16bf4a(0x267)]
+                    }), _0x4bfa0c % _0x26212f == 0x0 && (_0x2fecb2[_0xd67340] = _0x3352a6, _0xd67340++);
+                }), tgBot['sendMessage'](_0x1a3966[_0x312e4c(0x220)]['id'], _0x312e4c(0x202), { 'reply_markup': { 'inline_keyboard': _0x2fecb2 } })[_0x312e4c(0x1c3)](_0x13c6db => {
+                    telegramError(_0x13c6db);
+                }), tgBot['on']('callback_query', async _0x3af58f => {
+                    const _0x2b05ae = _0x312e4c, _0x52f063 = _0x3af58f[_0x2b05ae(0x286)], _0x39f3d8 = _0x3af58f[_0x2b05ae(0x249)];
+                    tgBot['answerCallbackQuery'](_0x3af58f['id'])[_0x2b05ae(0x232)](async () => {
+                        const _0x40f8ae = _0x2b05ae;
+                        if (settings['telegramEvents'] == _0x40f8ae(0x1ec))
+                            tgBot[_0x40f8ae(0x27a)](_0x39f3d8['chat']['id'], 'Bot\x20Mgr\x20>\x20restarting\x20Bot\x20' + _0x52f063)[_0x40f8ae(0x1c3)](_0x1f284 => {
+                                telegramError(_0x1f284);
+                            });
+                        stopBot(_0x52f063);
+                    }), tgBot[_0x2b05ae(0x1c4)](_0x2b05ae(0x22c));
+                });
+            }
+        }), tgBot[_0x3aea26(0x284)](/\/disable/, _0x39b74c => {
+            const _0x24e48d = _0x3aea26;
+            if (!validateTelegram(_0x39b74c))
+                return;
+            tgBot[_0x24e48d(0x27a)](_0x39b74c['chat']['id'], _0x24e48d(0x282))[_0x24e48d(0x1c3)](_0x2460eb => {
+                telegramError(_0x2460eb);
+            }), updateSetting(_0x24e48d(0x1cf), ![]);
+        }), tgBot['onText'](/\/help/, _0xb3519e => {
+            const _0x34730b = _0x3aea26;
+            if (!validateTelegram(_0xb3519e))
+                return;
+            tgBot['sendMessage'](_0xb3519e[_0x34730b(0x220)]['id'], _0x23c5ac)[_0x34730b(0x1c3)](_0x87e30b => {
+                telegramError(_0x87e30b);
+            });
+        }), tgBot['on'](_0x3aea26(0x295), _0x49614e => {
+            const _0x91ebc0 = _0x3aea26;
+            if (_0x49614e['toString']()[_0x91ebc0(0x24a)](_0x91ebc0(0x2e0))) {
+                logging(_0x91ebc0(0x28c)), tgBot['stopPolling'](), tgBot = null;
+                if (socket[_0x91ebc0(0x1d9)])
+                    socket[_0x91ebc0(0x1d9)][_0x91ebc0(0x2c1)]('notification', _0x91ebc0(0x28c));
+            }
+        }), process['once'](_0x3aea26(0x2a3), () => {
+            const _0x1ce533 = _0x3aea26;
+            if (tgBot)
+                tgBot[_0x1ce533(0x211)]();
+            process['exit'](0x1);
+        }), process[_0x3aea26(0x213)]('SIGTERM', () => {
+            const _0x36758c = _0x3aea26;
+            if (tgBot)
+                tgBot[_0x36758c(0x211)]();
+            process[_0x36758c(0x25f)](0x1);
+        });
+    }
+}
+function disableTelegram() {
+    const _0x29e822 = _0x4fdc0e;
+    tgBot && (tgBot[_0x29e822(0x211)](), tgBot = null);
+}
+function sendTelegram(_0x460050, _0x57d675) {
+    const _0x1681ac = _0x4fdc0e;
+    if (settings[_0x1681ac(0x1cf)]) {
+        if (settings[_0x1681ac(0x2d1)] == 'all' || (_0x57d675[_0x1681ac(0x234)] == _0x1681ac(0x263) || _0x57d675['type'] == _0x1681ac(0x2b1)) && settings['telegramEvents'] == 'alerts' || _0x57d675[_0x1681ac(0x234)] == _0x1681ac(0x246) && settings[_0x1681ac(0x2d1)] == _0x1681ac(0x1ec)) {
+            if (tgBot && settings['telegramChatId'])
+                tgBot[_0x1681ac(0x27a)](settings[_0x1681ac(0x200)], _0x1681ac(0x22d) + _0x460050 + _0x1681ac(0x29d) + _0x57d675[_0x1681ac(0x26d)])[_0x1681ac(0x1c3)](_0x5c220d => {
+                    telegramError(_0x5c220d);
+                });
+        }
+    }
+}
+function temporaryAccess2FA(_0x5983a8) {
+    const _0x1f67f0 = _0x4fdc0e;
+    let _0x5837a7 = new Date(), _0x123178 = ![];
+    if (lastIpApproval) {
+        if (_0x5837a7 - lastIpApproval < 0x1388)
+            _0x123178 = !![];
+    }
+    lastIpApproval = new Date();
+    if (_0x123178)
+        return;
+    tgBot && settings[_0x1f67f0(0x200)] && (tgBot[_0x1f67f0(0x1c4)](_0x1f67f0(0x22c)), tgBot[_0x1f67f0(0x27a)](settings[_0x1f67f0(0x200)], _0x1f67f0(0x2a1) + normalizeIP(_0x5983a8)[_0x1f67f0(0x294)] + '</b>\x20?', {
+        'parse_mode': _0x1f67f0(0x287),
+        'reply_markup': {
+            'inline_keyboard': [[
+                    {
+                        'text': _0x1f67f0(0x1f9),
+                        'callback_data': '5'
+                    },
+                    {
+                        'text': _0x1f67f0(0x223),
+                        'callback_data': '15'
+                    },
+                    {
+                        'text': _0x1f67f0(0x25a),
+                        'callback_data': '30'
+                    },
+                    {
+                        'text': 'reject',
+                        'callback_data': _0x1f67f0(0x254)
+                    }
+                ]]
+        }
+    })['catch'](_0x430371 => {
+        telegramError(_0x430371);
+    }), tgBot['on'](_0x1f67f0(0x22c), async _0x296f71 => {
+        const _0x5c1647 = _0x1f67f0, _0x40eb8c = _0x296f71[_0x5c1647(0x286)], _0x24f42c = _0x296f71[_0x5c1647(0x249)];
+        tgBot['answerCallbackQuery'](_0x296f71['id'])['then'](async () => {
+            const _0x261775 = _0x5c1647;
+            if (_0x40eb8c != _0x261775(0x254)) {
+                telegramIpApproval = {
+                    'clientip': _0x5983a8,
+                    'timestamp': new Date()[_0x261775(0x2c4)](),
+                    'expiry': _0x40eb8c
+                }, await tgBot[_0x261775(0x27a)](_0x24f42c['chat']['id'], 'Access\x20enabled\x20for\x20' + _0x40eb8c + _0x261775(0x2de), { 'parse_mode': _0x261775(0x287) })[_0x261775(0x1c3)](_0x54805b => {
+                    telegramError(_0x54805b);
+                });
+                for (let _0x3cdbd0 in socket) {
+                    socket[_0x3cdbd0][_0x261775(0x2c1)]('status', {
+                        'access': {
+                            'allow': ![],
+                            'reason': 'reload',
+                            'token': null
+                        }
+                    });
+                }
+            } else
+                await tgBot[_0x261775(0x27a)](_0x24f42c[_0x261775(0x220)]['id'], _0x261775(0x29c))[_0x261775(0x1c3)](_0x23af54 => {
+                    telegramError(_0x23af54);
+                });
+        }), tgBot[_0x5c1647(0x1c4)]('callback_query');
+    }));
+}
+function loginAccess2FA(_0x1abb62) {
+    const _0x430794 = _0x4fdc0e;
+    tgBot && settings[_0x430794(0x200)] && (tgBot[_0x430794(0x1c4)](_0x430794(0x22c)), tgBot[_0x430794(0x27a)](settings[_0x430794(0x200)], _0x430794(0x2d4) + normalizeIP(_0x1abb62)[_0x430794(0x294)] + '</b>\x20?', {
+        'parse_mode': _0x430794(0x287),
+        'reply_markup': {
+            'inline_keyboard': [[
+                    {
+                        'text': _0x430794(0x22f),
+                        'callback_data': loginExpiry
+                    },
+                    {
+                        'text': _0x430794(0x254),
+                        'callback_data': _0x430794(0x254)
+                    }
+                ]]
+        }
+    })['catch'](_0xbacca0 => {
+        telegramError(_0xbacca0);
+    }), tgBot['on'](_0x430794(0x22c), async _0x676163 => {
+        const _0x19f51a = _0x430794, _0x443d23 = _0x676163[_0x19f51a(0x286)], _0x5e9e93 = _0x676163[_0x19f51a(0x249)];
+        tgBot[_0x19f51a(0x2bf)](_0x676163['id'])['then'](async () => {
+            const _0x4270c7 = _0x19f51a;
+            if (_0x443d23 != _0x4270c7(0x254)) {
+                telegram2FaApproval = {
+                    'clientip': _0x1abb62,
+                    'timestamp': new Date()[_0x4270c7(0x2c4)](),
+                    'expiry': _0x443d23
+                }, await tgBot[_0x4270c7(0x27a)](_0x5e9e93['chat']['id'], _0x4270c7(0x245), { 'parse_mode': _0x4270c7(0x287) })['catch'](_0x5dd373 => {
+                    telegramError(_0x5dd373);
+                });
+                for (let _0x4d4341 in socket) {
+                    socket[_0x4d4341]['emit']('status', {
+                        'access': {
+                            'allow': ![],
+                            'reason': 'reload',
+                            'token': null
+                        }
+                    });
+                }
+            } else
+                await tgBot[_0x4270c7(0x27a)](_0x5e9e93[_0x4270c7(0x220)]['id'], 'Login\x20rejected')['catch'](_0x1116b2 => {
+                    telegramError(_0x1116b2);
+                });
+        }), tgBot[_0x19f51a(0x1c4)](_0x19f51a(0x22c));
+    }));
+}
+function getConfiguration() {
+    const _0x140c56 = _0x4fdc0e;
+    return dbConfig[_0x140c56(0x1fa)]('bots')['sortBy'](_0x140c56(0x267))[_0x140c56(0x1f4)]() || [];
+}
+function getEnabledBots() {
+    const _0x13a8eb = _0x4fdc0e;
+    return dbConfig[_0x13a8eb(0x1fa)](_0x13a8eb(0x1d8))[_0x13a8eb(0x279)]('botID')[_0x13a8eb(0x1f7)]({ 'status': _0x13a8eb(0x1c7) })['value']() || [];
+}
+function getSettings() {
+    const _0x2bf2d8 = _0x4fdc0e;
+    return dbSettings[_0x2bf2d8(0x1fa)]('settings')['value']() || { 'timeshift': 0x0 };
+}
+function getSecure() {
+    const _0x28e45d = _0x4fdc0e;
+    return dbSecure[_0x28e45d(0x1fa)](_0x28e45d(0x2c2))['value']() || {};
+}
+function getBlacklist() {
+    const _0x477847 = _0x4fdc0e;
+    return dbSecure[_0x477847(0x1fa)]('blacklist')['value']() || [];
+}
+function broadcastToBots(_0x2e4cbb, _0x5e69a3) {
+    const _0x2cceae = _0x4fdc0e;
+    config[_0x2cceae(0x26b)](_0x420bd9 => {
+        const _0x55463c = _0x2cceae;
+        if (_0x420bd9[_0x55463c(0x23b)] == 'enabled' && _0x420bd9[_0x55463c(0x21b)] == _0x55463c(0x2cf)) {
+            if (pid[_0x420bd9[_0x55463c(0x267)]])
+                pid[_0x420bd9[_0x55463c(0x267)]][_0x55463c(0x27b)]({ [_0x2e4cbb]: _0x5e69a3 });
+        }
+    });
+}
+function storeSettings(_0x5510ad, _0x5e637d = ![]) {
+    const _0x549544 = _0x4fdc0e;
+    _0x5510ad = {
+        ...settings,
+        ..._0x5510ad
+    };
+    if (_0x5e637d && _0x5510ad[_0x549544(0x225)] != '************' && _0x5510ad[_0x549544(0x225)] != '') {
+        const _0x546e61 = crypt[_0x549544(0x262)](secure['privateKey'], _0x5510ad['bbPassword'])[_0x549544(0x249)]['split']('@')[0x0], _0xe1050 = bcrypt[_0x549544(0x1fe)](_0x546e61, saltRounds);
+        _0x5510ad = {
+            ..._0x5510ad,
+            'bbPassword': _0xe1050
+        };
+    }
+    if (_0x5e637d && _0x5510ad[_0x549544(0x266)] != '************' && _0x5510ad[_0x549544(0x266)] != '') {
+        const _0x3fd78e = crypt[_0x549544(0x262)](secure[_0x549544(0x265)], _0x5510ad[_0x549544(0x266)])[_0x549544(0x249)][_0x549544(0x1ff)]('@')[0x0];
+        _0x5510ad = {
+            ..._0x5510ad,
+            'telegramToken': _0x3fd78e
+        };
+    }
+    const _0x579ba1 = _0x5510ad[_0x549544(0x266)] != _0x549544(0x239) && _0x5510ad[_0x549544(0x266)] != settings['telegramToken'] || _0x5510ad[_0x549544(0x2bc)] != settings['telegramUsername'], _0x3faa42 = _0x5510ad[_0x549544(0x266)] == '' || _0x5510ad[_0x549544(0x2bc)] == '';
+    if (_0x579ba1)
+        _0x5510ad[_0x549544(0x2d1)] = 'all';
+    for (const [_0x2db382, _0x578125] of Object[_0x549544(0x2a4)](_0x5510ad)) {
+        if (_0x2db382 == _0x549544(0x266) && _0x578125 == _0x549544(0x239)) {
+            _0x5510ad['telegramToken'] = settings[_0x549544(0x266)];
+            continue;
+        }
+        ;
+        if (_0x2db382 == _0x549544(0x225) && _0x578125 == '************') {
+            _0x5510ad[_0x549544(0x225)] = settings[_0x549544(0x225)];
+            continue;
+        }
+        ;
+        dbSettings[_0x549544(0x26e)]('settings.' + _0x2db382, _0x578125)[_0x549544(0x1d2)]();
+    }
+    settings = _0x5510ad;
+    if (socket[_0x549544(0x1d9)])
+        socket[_0x549544(0x1d9)][_0x549544(0x2c1)](_0x549544(0x1f3), cleanSettings());
+    broadcastToBots(_0x549544(0x2d2), settings['timeshift']);
+    if (_0x579ba1 && !_0x3faa42)
+        initTelegram();
+    if (_0x579ba1 && _0x3faa42)
+        disableTelegram();
+    for (let _0x2b6fab in socket) {
+        setAccess(_0x2b6fab);
+    }
+}
+function updateSetting(_0xaab743, _0x3fc0c4) {
+    const _0x4b5ca1 = _0x4fdc0e;
+    dbSettings[_0x4b5ca1(0x26e)](_0x4b5ca1(0x2a2) + _0xaab743, _0x3fc0c4)[_0x4b5ca1(0x1d2)](), settings = getSettings();
+    if (socket[_0x4b5ca1(0x1d9)])
+        socket[_0x4b5ca1(0x1d9)]['emit']('settings', cleanSettings());
+}
+function storeSecure(_0x308c41) {
+    const _0x24f06d = _0x4fdc0e;
+    dbSecure[_0x24f06d(0x1fa)]('secure')['push'](_0x308c41)[_0x24f06d(0x1d2)](), secure = _0x308c41;
+}
+function addBlacklist() {
+    const _0x8c69fb = _0x4fdc0e;
+    cleanBlacklist();
+    let _0x5358ba;
+    telegramIpApproval ? _0x5358ba = Math[_0x8c69fb(0x1f2)](telegramIpApproval[_0x8c69fb(0x2da)], loginExpiry) : _0x5358ba = loginExpiry, dbSecure[_0x8c69fb(0x1fa)](_0x8c69fb(0x222))[_0x8c69fb(0x275)]({
+        'expiry': new Date()[_0x8c69fb(0x2c4)]() + _0x5358ba * 0x3c * 0x3e8,
+        'token': token
+    })[_0x8c69fb(0x1d2)](), blacklist = dbSecure['get'](_0x8c69fb(0x222))['value']();
+}
+function cleanBlacklist() {
+    const _0x4e9921 = _0x4fdc0e;
+    let _0x8c6677 = dbSecure[_0x4e9921(0x1fa)](_0x4e9921(0x222))[_0x4e9921(0x297)]()[_0x4e9921(0x1f4)](), _0x3b3270 = new Date()[_0x4e9921(0x2c4)]();
+    _0x8c6677[_0x4e9921(0x26b)](_0x76eead => {
+        const _0x58c19f = _0x4e9921;
+        _0x76eead[_0x58c19f(0x2da)] < _0x3b3270 && dbSecure[_0x58c19f(0x1fa)](_0x58c19f(0x222))[_0x58c19f(0x21f)]({ 'expiry': _0x76eead[_0x58c19f(0x2da)] })[_0x58c19f(0x1d2)]();
+    });
+}
+function initStates() {
+    let _0x167655 = getConfiguration();
+    _0x167655['forEach'](_0x34aa2b => {
+        const _0x98805f = _0x2ca6;
+        _0x34aa2b[_0x98805f(0x21b)] = 'stopped';
+    }), storeConfiguration(_0x167655);
+}
+function onKeys() {
+    const _0x1d0767 = new RSA();
+    return new Promise(_0x3b455c => {
+        const _0x15ab36 = _0x2ca6;
+        _0x1d0767[_0x15ab36(0x2c8)]()[_0x15ab36(0x232)](_0x2dffa2 => {
+            _0x3b455c(_0x2dffa2);
+        });
+    });
+}
+async function generateKeys() {
+    return await onKeys();
+}
+async function oneTimeMigration() {
+    const _0x5b98f6 = _0x4fdc0e;
+    let _0x571183 = getConfiguration(), _0x2bb0e4 = ![];
+    _0x571183[_0x5b98f6(0x26b)](_0x4b34fa => {
+        const _0x489ee7 = _0x5b98f6;
+        if (_0x4b34fa[_0x489ee7(0x23b)] == _0x489ee7(0x2cf))
+            _0x4b34fa[_0x489ee7(0x23b)] = _0x489ee7(0x1c7), _0x2bb0e4 = !![];
+        else
+            _0x4b34fa[_0x489ee7(0x23b)] == _0x489ee7(0x22b) && (_0x4b34fa[_0x489ee7(0x23b)] = _0x489ee7(0x221), _0x2bb0e4 = !![]);
+    });
+    if (_0x2bb0e4)
+        storeConfiguration(_0x571183);
+    let _0x5cf4aa = getSecure();
+    if (!_0x5cf4aa['hasOwnProperty']('secret')) {
+        let _0x511662 = await generateKeys();
+        _0x5cf4aa[_0x5b98f6(0x1e2)] = _0x511662[_0x5b98f6(0x1e2)], _0x5cf4aa[_0x5b98f6(0x265)] = _0x511662[_0x5b98f6(0x265)], _0x5cf4aa[_0x5b98f6(0x20e)] = crypto[_0x5b98f6(0x1e7)](0x20)[_0x5b98f6(0x23d)]('hex');
+        ;
+        storeSecure(_0x5cf4aa);
+    }
+    let _0x3b67ca = getSettings();
+    _0x2bb0e4 = ![];
+    !_0x3b67ca[_0x5b98f6(0x2d0)]('loginRequired') && (_0x3b67ca[_0x5b98f6(0x1de)] = ![], _0x3b67ca[_0x5b98f6(0x2cd)] = '', _0x3b67ca[_0x5b98f6(0x225)] = '', _0x3b67ca[_0x5b98f6(0x244)] = ![], _0x2bb0e4 = !![]);
+    !_0x3b67ca[_0x5b98f6(0x2d0)](_0x5b98f6(0x1bc)) && (_0x3b67ca[_0x5b98f6(0x1bc)] = ![], _0x3b67ca[_0x5b98f6(0x23a)] = [], _0x3b67ca[_0x5b98f6(0x260)] = ![], _0x2bb0e4 = !![]);
+    if (!_0x3b67ca[_0x5b98f6(0x2d0)](_0x5b98f6(0x1cf))) {
+        if (_0x3b67ca[_0x5b98f6(0x200)])
+            _0x3b67ca['telegramEnabled'] = !![];
+        else
+            _0x3b67ca[_0x5b98f6(0x1cf)] = ![];
+        _0x2bb0e4 = !![];
+    }
+    if (_0x2bb0e4)
+        storeSettings(_0x3b67ca);
+}
+function storeConfiguration(_0x46657a) {
+    const _0x3b293e = _0x4fdc0e;
+    dbConfig[_0x3b293e(0x1fa)](_0x3b293e(0x1d8))[_0x3b293e(0x21f)]()[_0x3b293e(0x1d2)](), dbConfig[_0x3b293e(0x1fa)](_0x3b293e(0x1d8))[_0x3b293e(0x275)](..._0x46657a)[_0x3b293e(0x1d2)](), config = _0x46657a;
+}
+function resetPassword() {
+    const _0x57499e = _0x4fdc0e;
+    tgBot && settings['telegramChatId'] && (tgBot[_0x57499e(0x1c4)](_0x57499e(0x22c)), tgBot[_0x57499e(0x27a)](settings[_0x57499e(0x200)], 'Do\x20you\x20want\x20to\x20reset\x20your\x20password?', {
+        'parse_mode': _0x57499e(0x287),
+        'reply_markup': {
+            'inline_keyboard': [[
+                    {
+                        'text': _0x57499e(0x25c),
+                        'callback_data': 'yes'
+                    },
+                    {
+                        'text': 'no',
+                        'callback_data': 'no'
+                    }
+                ]]
+        }
+    })['catch'](_0x1f1593 => {
+        telegramError(_0x1f1593);
+    }), tgBot['on'](_0x57499e(0x22c), async _0x3f230b => {
+        const _0x21b3b9 = _0x57499e, _0x138d6a = _0x3f230b['data'], _0x2d2274 = _0x3f230b[_0x21b3b9(0x249)];
+        tgBot[_0x21b3b9(0x2bf)](_0x3f230b['id'])[_0x21b3b9(0x232)](async () => {
+            const _0x20bb9a = _0x21b3b9;
+            if (_0x138d6a != 'no') {
+                const _0x2354b2 = 0xf, _0x37344a = _0x20bb9a(0x1e8), _0x749cdb = Array[_0x20bb9a(0x255)](crypto[_0x20bb9a(0x217)](new Uint32Array(_0x2354b2)))[_0x20bb9a(0x2dd)](_0x955060 => _0x37344a[_0x955060 % _0x37344a[_0x20bb9a(0x29b)]])[_0x20bb9a(0x21a)](''), _0x29c180 = bcrypt[_0x20bb9a(0x1fe)](_0x749cdb, saltRounds);
+                storeSettings({ 'bbPassword': _0x29c180 }), await tgBot[_0x20bb9a(0x27a)](_0x2d2274[_0x20bb9a(0x220)]['id'], _0x20bb9a(0x2aa) + _0x749cdb, { 'parse_mode': _0x20bb9a(0x287) })['catch'](_0x5a2edb => {
+                    telegramError(_0x5a2edb);
+                });
+            } else
+                await tgBot[_0x20bb9a(0x27a)](_0x2d2274[_0x20bb9a(0x220)]['id'], _0x20bb9a(0x1c9))[_0x20bb9a(0x1c3)](_0x4ec1e4 => {
+                    telegramError(_0x4ec1e4);
+                });
+        }), tgBot[_0x21b3b9(0x1c4)]('callback_query');
+    }));
+}
+function logging(_0x5e5878) {
+    const _0x612bba = _0x4fdc0e;
+    console[_0x612bba(0x290)](getTimeStamp() + ':\x20Bot\x20Mgr\x20>\x20' + _0x5e5878);
+    if (tgBot && settings[_0x612bba(0x200)] && settings[_0x612bba(0x2d1)] != _0x612bba(0x1ec))
+        tgBot[_0x612bba(0x27a)](settings[_0x612bba(0x200)], _0x612bba(0x293) + _0x5e5878)[_0x612bba(0x1c3)](_0x326ae5 => {
+            telegramError(_0x326ae5);
+        });
+}
+function getServerTime() {
+    const _0x13adfe = _0x4fdc0e, _0xfd890a = new Date();
+    return _0xfd890a[_0x13adfe(0x257)]() + '/' + (_0xfd890a[_0x13adfe(0x208)]() + 0x1)[_0x13adfe(0x23d)]()['padStart'](0x2, '0') + '/' + _0xfd890a['getDate']()['toString']()['padStart'](0x2, '0') + '\x20' + _0xfd890a[_0x13adfe(0x1d5)]()[_0x13adfe(0x23d)]()['padStart'](0x2, '0') + ':' + _0xfd890a[_0x13adfe(0x216)]()[_0x13adfe(0x23d)]()[_0x13adfe(0x2cb)](0x2, '0') + ':' + _0xfd890a[_0x13adfe(0x1f5)]()[_0x13adfe(0x23d)]()[_0x13adfe(0x2cb)](0x2, '0');
+}
+function getTimeStamp() {
+    const _0x1cae07 = _0x4fdc0e, _0x5421d4 = shiftedTime();
+    return _0x5421d4[_0x1cae07(0x257)]() + '/' + (_0x5421d4[_0x1cae07(0x208)]() + 0x1)[_0x1cae07(0x23d)]()['padStart'](0x2, '0') + '/' + _0x5421d4[_0x1cae07(0x252)]()[_0x1cae07(0x23d)]()[_0x1cae07(0x2cb)](0x2, '0') + '\x20' + _0x5421d4[_0x1cae07(0x1d5)]()[_0x1cae07(0x23d)]()[_0x1cae07(0x2cb)](0x2, '0') + ':' + _0x5421d4[_0x1cae07(0x216)]()[_0x1cae07(0x23d)]()[_0x1cae07(0x2cb)](0x2, '0') + ':' + _0x5421d4['getSeconds']()['toString']()['padStart'](0x2, '0');
+}
+function shiftedTime() {
+    const _0x14cc56 = _0x4fdc0e, _0x47129e = new Date();
+    let _0x460751 = _0x47129e;
+    if (settings[_0x14cc56(0x2d2)] && settings[_0x14cc56(0x2d2)] !== 0x0)
+        _0x460751 = fns['add'](_0x47129e, { 'hours': settings[_0x14cc56(0x2d2)] });
+    return _0x460751;
+}
+function startAnalytics() {
+    const _0x4af2fb = _0x4fdc0e;
+    let _0xce0a2c = new Date()[_0x4af2fb(0x2b7)]();
+    _0xce0a2c == 0x9 && triggerAnalytics();
+    if (pidAnalytics)
+        clearTimeout(pidAnalytics);
+    pidAnalytics = setTimeout(() => {
+        startAnalytics();
+    }, 0x3c * 0x3c * 0x3e8);
+}
+function triggerAnalytics() {
+    const _0x556b35 = _0x4fdc0e;
+    analytics[_0x556b35(0x2ab)]({
+        'title': _0x556b35(0x27e),
+        'href': _0x556b35(0x26c),
+        'path': '/v' + serverversion
+    });
+}
+function validateCredentials(_0x14f452) {
+    const _0x6b6c61 = _0x4fdc0e;
+    if (_0x14f452[_0x6b6c61(0x28e)] == settings[_0x6b6c61(0x2cd)] && bcrypt[_0x6b6c61(0x231)](_0x14f452[_0x6b6c61(0x248)], settings[_0x6b6c61(0x225)])) {
+        if (settings[_0x6b6c61(0x244)])
+            return {
+                'allow': ![],
+                'reason': _0x6b6c61(0x218),
+                'token': null
+            };
+        else {
+            const _0x55e485 = generateLoginToken();
+            return {
+                'allow': !![],
+                'reason': _0x6b6c61(0x241),
+                'token': _0x55e485
+            };
+        }
+    } else
+        return {
+            'allow': ![],
+            'reason': _0x6b6c61(0x1d1),
+            'token': null
+        };
+}
+function refreshToken() {
+    const _0x14abae = _0x4fdc0e, _0x49b2e5 = generateLoginToken();
+    return {
+        'allow': !![],
+        'reason': _0x14abae(0x241),
+        'token': _0x49b2e5
+    };
+}
+function validateAccess(_0x214768) {
+    const _0x218bbf = _0x4fdc0e;
+    let _0x18d300;
+    const _0x3d47c7 = _0x4216c0 => {
+        const _0x7ece8e = _0x2ca6;
+        if (settings[_0x7ece8e(0x1de)]) {
+            if (settings[_0x7ece8e(0x244)]) {
+                if (telegram2FaApproved()) {
+                    const _0xd80fc9 = generateLoginToken();
+                    return {
+                        'allow': !![],
+                        'reason': _0x7ece8e(0x1ce),
+                        'token': _0xd80fc9
+                    };
+                } else
+                    return {
+                        'allow': ![],
+                        'reason': _0x7ece8e(0x218),
+                        'token': null
+                    };
+            } else
+                return _0x18d300 = validToken(_0x4216c0), _0x18d300[_0x7ece8e(0x2d0)](_0x7ece8e(0x2b1)) ? {
+                    'allow': !![],
+                    'reason': _0x7ece8e(0x23c),
+                    'token': _0x4216c0
+                } : {
+                    'allow': ![],
+                    'reason': _0x7ece8e(0x2be),
+                    'token': null
+                };
+        } else
+            return {
+                'allow': !![],
+                'reason': _0x7ece8e(0x24f),
+                'token': null
+            };
+    };
+    if (settings[_0x218bbf(0x1bc)]) {
+        let _0x663c86 = [
+            ...settings[_0x218bbf(0x23a)],
+            '::1',
+            '::ffff:127.0.0.1',
+            _0x218bbf(0x20a)
+        ];
+        if (_0x663c86[_0x218bbf(0x24a)](externalip))
+            return _0x3d47c7(_0x214768);
+        else {
+            _0x18d300 = validToken(_0x214768);
+            if (_0x18d300[_0x218bbf(0x2d0)]('success'))
+                return _0x3d47c7(_0x214768);
+            else {
+                if (telegramIpApproved()) {
+                    const _0x1d8559 = generateToken();
+                    return _0x18d300 = _0x3d47c7(_0x214768), _0x18d300['allow'] ? {
+                        'allow': !![],
+                        'reason': 'temporary\x20token\x20generated',
+                        'token': _0x1d8559
+                    } : _0x18d300;
+                } else
+                    return settings[_0x218bbf(0x260)] ? {
+                        'allow': ![],
+                        'reason': '2FA\x20required',
+                        'token': null
+                    } : {
+                        'allow': ![],
+                        'reason': _0x218bbf(0x1d3),
+                        'token': null
+                    };
+            }
+        }
+    } else
+        return _0x3d47c7(_0x214768);
+}
+function timelyDecrypt(_0x2393eb, _0x3260f6 = !![]) {
+    const _0x32c467 = _0x4fdc0e;
+    if (_0x2393eb)
+        try {
+            const _0x4fe41e = crypt[_0x32c467(0x262)](secure['privateKey'], _0x2393eb)[_0x32c467(0x249)], _0x2f545d = _0x4fe41e['split']('@')[0x0], _0xca64e7 = _0x4fe41e[_0x32c467(0x1ff)]('@')[0x1], _0x572a62 = new Date()[_0x32c467(0x2c4)]();
+            if (_0x3260f6) {
+                if (_0x572a62 - _0xca64e7 < maxSecretAge * 0x3e8)
+                    return _0x2f545d;
+                else
+                    return ![];
+            } else
+                return _0x2f545d;
+        } catch {
+            return ![];
+        }
+    else
+        return ![];
+}
+const validToken = _0x50e7d1 => {
+        const _0x37ee94 = _0x4fdc0e;
+        if (!_0x50e7d1)
+            return { 'error': _0x37ee94(0x1c2) };
+        for (let _0x29eaab of blacklist) {
+            if (_0x29eaab['token'] == _0x50e7d1)
+                return { 'error': 'Token\x20blacklisted' };
+        }
+        let _0x1d40a3;
+        try {
+            _0x1d40a3 = jwt[_0x37ee94(0x278)](_0x50e7d1, secure[_0x37ee94(0x20e)] + uuid);
+        } catch {
+            return { 'error': _0x37ee94(0x2e1) };
+        }
+        if (!_0x1d40a3[_0x37ee94(0x2d0)](_0x37ee94(0x2dc)) && !_0x1d40a3[_0x37ee94(0x2d0)](_0x37ee94(0x28e)) || !_0x1d40a3[_0x37ee94(0x2d0)]('exp'))
+            return { 'error': _0x37ee94(0x204) };
+        if (!_0x1d40a3[_0x37ee94(0x2d0)](_0x37ee94(0x28e)) && _0x1d40a3[_0x37ee94(0x2d0)]('clientip')) {
+            const {clientip: _0x2668f0} = _0x1d40a3;
+            return externalip == _0x2668f0 ? { 'success': _0x37ee94(0x28a) } : { 'error': 'Invalid\x20IP\x20address' };
+        } else {
+            if (_0x1d40a3['hasOwnProperty'](_0x37ee94(0x28e)) && _0x1d40a3[_0x37ee94(0x2d0)]('clientip')) {
+                const {
+                    username: _0x299d0a,
+                    clientip: _0xad7d17
+                } = _0x1d40a3;
+                return settings[_0x37ee94(0x2cd)] == _0x299d0a && externalip == _0xad7d17 ? { 'success': _0x37ee94(0x28a) } : { 'error': _0x37ee94(0x2b2) };
+            }
+        }
+    }, generateLoginToken = () => {
+        const _0x3e7c1c = _0x4fdc0e;
+        if (uuid)
+            return jwt[_0x3e7c1c(0x240)]({
+                'username': settings[_0x3e7c1c(0x2cd)],
+                'clientip': externalip
+            }, secure[_0x3e7c1c(0x20e)] + uuid, { 'expiresIn': tokenRefresh * 0x3c });
+        else
+            return ![];
+    }, generateToken = () => {
+        const _0x8b04b8 = _0x4fdc0e;
+        if (uuid)
+            return jwt[_0x8b04b8(0x240)]({ 'clientip': externalip }, secure['secret'] + uuid, { 'expiresIn': telegramIpApproval['expiry'] * 0x3c });
+        else
+            return ![];
+    }, telegramIpApproved = () => {
+        const _0x9aa37a = _0x4fdc0e;
+        let _0x1c49e9 = ![];
+        return telegramIpApproval && telegramIpApproval[_0x9aa37a(0x2da)] != _0x9aa37a(0x254) && (_0x1c49e9 = telegramIpApproval[_0x9aa37a(0x2dc)] == externalip && new Date()['getTime']() - telegramIpApproval[_0x9aa37a(0x28f)] < telegramIpApproval[_0x9aa37a(0x2da)] * 0x3c * 0x3e8), _0x1c49e9;
+    }, telegram2FaApproved = () => {
+        const _0x1df5c9 = _0x4fdc0e;
+        let _0x2d087d = ![];
+        return telegram2FaApproval && telegram2FaApproval[_0x1df5c9(0x2da)] != _0x1df5c9(0x254) && (_0x2d087d = telegram2FaApproval[_0x1df5c9(0x2dc)] == externalip && new Date()['getTime']() - telegram2FaApproval[_0x1df5c9(0x28f)] < telegram2FaApproval[_0x1df5c9(0x2da)] * 0x3c * 0x3e8), _0x2d087d;
+    }, normalizeIP = _0x32d30b => {
+        const _0x3b2d3d = _0x4fdc0e;
+        let _0x31cad6 = null, _0x24edda = null;
+        if (ipaddr[_0x3b2d3d(0x2b9)](_0x32d30b)) {
+            const _0x59204d = ipaddr['parse'](_0x32d30b);
+            _0x59204d['kind']() === _0x3b2d3d(0x210) ? (_0x59204d['isIPv4MappedAddress']() && (_0x31cad6 = _0x59204d[_0x3b2d3d(0x27c)]()[_0x3b2d3d(0x23d)]()), _0x24edda = _0x59204d[_0x3b2d3d(0x23d)]()) : (_0x31cad6 = _0x59204d['toString'](), _0x24edda = _0x59204d[_0x3b2d3d(0x1e6)]()['toString']());
+        }
+        return {
+            'show': _0x31cad6 ? _0x31cad6 : _0x24edda,
+            'store': _0x24edda
+        };
+    };
