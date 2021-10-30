@@ -1,6 +1,6 @@
 {
   "name": "balance-bot-v2",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "",
   "main": "bb.js",
   "scripts": {
