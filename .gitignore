@@ -2,3 +2,4 @@
 .vs*
 workspace.*
 test*
+*copy.js
