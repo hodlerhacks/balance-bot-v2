@@ -6,7 +6,6 @@ const spawn = require('child_process').spawn;
 const execSync = require('child_process').execSync;
 const fse = require('fs-extra');
 const prompt = require('prompt-sync')();
-const diff = require('diff');
 
 const installpath = './bb/';
 const installerpath = './installer/';
@@ -126,7 +125,8 @@ function install() {
             console.log('---------------------------------------------');
             console.log('Installing Packages...');
             try {
-                const installerDependencies = require(installpath + packageFileInstaller).dependencies;
+                if (fse.pathExistsSync(installpath + packageFileInstaller)) fse.moveSync(installpath + packageFileInstaller, basepath + packageFileInstaller, { overwrite: true });
+                const installerDependencies = require(basepath + packageFileInstaller).dependencies;
                 const bbDependencies = require(installpath + packageFile).dependencies;
                 const mergedDependencies = merge(installerDependencies, bbDependencies);
 
@@ -148,7 +148,6 @@ function install() {
             try {
                 if (fse.pathExistsSync(installpath + bbfile)) fse.moveSync(installpath + bbfile, basepath + bbfile, { overwrite: true });
                 if (fse.pathExistsSync(installpath + installfile)) fse.moveSync(installpath + installfile, basepath + installfile, { overwrite: true });
-                if (fse.pathExistsSync(installpath + packageFileInstaller)) fse.moveSync(installpath + packageFileInstaller, basepath + packageFileInstaller, { overwrite: true });
             } catch (err) {
                 console.log('Error occured during Balance Bot installation: ', err);
                 return process.exit(1);
