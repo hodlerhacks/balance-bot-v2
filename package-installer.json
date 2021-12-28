@@ -1,0 +1,15 @@
+{
+  "name": "balance_bot_installer",
+  "version": "2.3.0",
+  "description": "",
+  "main": "install.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
