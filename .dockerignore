@@ -1,8 +1,0 @@
-/config*
-.vs*
-workspace.*
-test*
-*copy*
-node_modules/
-Dockerfile
-docker-compose.yml
