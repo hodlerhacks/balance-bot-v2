@@ -1,6 +1,6 @@
 {
   "name": "balance-bot-v2",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "",
   "main": "bb.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "@analytics/google-analytics": "^0.5.3",
     "analytics": "^0.7.14",
     "bcryptjs": "^2.4.3",
-    "binance": "^2.0.8",
+    "binance": "^2.0.27",
     "ccxt": "^1.43.29",
     "date-fns": "^2.21.1",
     "express": "^4.17.1",
