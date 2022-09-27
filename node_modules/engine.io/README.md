@@ -1,7 +1,7 @@
 
 # Engine.IO: the realtime engine
 
-[![Build Status](https://github.com/socketio/engine.io/workflows/CI/badge.svg?branch=master))](https://github.com/socketio/engine.io/actions)
+[![Build Status](https://github.com/socketio/engine.io/workflows/CI/badge.svg?branch=master)](https://github.com/socketio/engine.io/actions)
 [![NPM version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
 
 `Engine.IO` is the implementation of transport-based
@@ -355,6 +355,8 @@ A representation of a client. _Inherits from EventEmitter_.
     - **Arguments**
       - `type`: packet type
       - `data`: packet data (if type is message)
+- `heartbeat`
+    - Called when `ping` or `pong` packed is received (depends of client version)
 
 ##### Properties
 

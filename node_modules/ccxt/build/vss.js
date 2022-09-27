@@ -12,23 +12,6 @@ const fs           = require ('fs')
     , { execSync } = require ('child_process')
     , { copyFile } = require ('./fs.js')
 
-
-//-----------------------------------------------------------------------------
-
-function incrementVersionPatchNumber (version) {
-
-    let [ major, minor, patch ] = version.split ('.')
-
-    // we don't increment it here anymore, because
-    // npm version patch will be explicitly called before
-
-    // patch = (parseInt (patch) + 1).toString ()
-
-    version = [ major, minor, patch ].join ('.')
-
-    return version
-}
-
 //-----------------------------------------------------------------------------
 
 function vss (filename, template, version) {
@@ -46,15 +29,13 @@ function vssEverything () {
 
     let { version } = require ('../package.json')
 
-    log.bright ('Old version: '.dim, version)
-    version = incrementVersionPatchNumber (version)
     log.bright ('New version: '.cyan, version)
 
     vss ('./ccxt.js',                                    "const version = '{version}'", version)
-    vss ('./php/base/Exchange.php',                      "$version = '{version}'",      version)
-    vss ('./php/async/base/Exchange.php',                "VERSION = '{version}'",       version)
-    vss ('./php/async/base/Exchange.php',                "$version = '{version}'",      version)
-    vss ('./php/base/Exchange.php',                      "VERSION = '{version}'",       version)
+    vss ('./php/Exchange.php',                           "$version = '{version}'",      version)
+    vss ('./php/async/Exchange.php',                     "VERSION = '{version}'",       version)
+    vss ('./php/async/Exchange.php',                     "$version = '{version}'",      version)
+    vss ('./php/Exchange.php',                           "VERSION = '{version}'",       version)
     vss ('./python/ccxt/__init__.py',                    "__version__ = '{version}'",   version)
     vss ('./python/ccxt/base/exchange.py',               "__version__ = '{version}'",   version)
     vss ('./python/ccxt/async_support/__init__.py',      "__version__ = '{version}'",   version)
@@ -92,7 +73,6 @@ if (require.main === module) {
 // ============================================================================
 
 module.exports = {
-    incrementVersionPatchNumber,
     vss,
     vssEverything,
 }
