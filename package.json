@@ -11,6 +11,7 @@
   "dependencies": {
     "@analytics/google-analytics-v3": "^0.6.1",
     "analytics": "^0.8.1",
+    "axios": "^1.1.2",
     "bcryptjs": "^2.4.3",
     "binance": "^2.0.40",
     "ccxt": "^1.93.101",
@@ -20,6 +21,7 @@
     "ipaddr.js": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
+    "mixpanel": "^0.17.0",
     "node-telegram-bot-api": "^0.59.0",
     "socket.io": "^4.5.2",
     "yargs": "^17.3.0"
