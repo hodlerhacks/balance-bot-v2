@@ -1,6 +1,6 @@
 {
   "name": "balance-bot-v2",
-  "version": "2.4.5",
+  "version": "2.4.2",
   "description": "",
   "main": "bb.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "ccxt": "^1.93.101",
     "date-fns": "^2.21.1",
     "express": "^4.18.1",
+    "graphql-request": "^5.0.0",
     "hybrid-crypto-js": "^0.2.4",
     "ipaddr.js": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
