@@ -13,10 +13,6 @@ import requiredArgs from "../_lib/requiredArgs/index.js";
  * ISO week starts with Monday.
  * 7 is the index of Sunday, 1 is the index of Monday etc.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the date to be changed
  * @param {Number} day - the day of the ISO week of the new date
  * @returns {Date} the new date with the day of the ISO week set

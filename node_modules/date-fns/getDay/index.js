@@ -19,10 +19,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @description
  * Get the day of the week of the given date.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the given date
  * @returns {0|1|2|3|4|5|6} the day of week, 0 represents Sunday
  * @throws {TypeError} 1 argument required

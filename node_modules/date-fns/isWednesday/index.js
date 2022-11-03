@@ -19,10 +19,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @description
  * Is the given date Wednesday?
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the date to check
  * @returns {Boolean} the date is Wednesday
  * @throws {TypeError} 1 argument required

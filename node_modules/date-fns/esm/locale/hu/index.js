@@ -6,12 +6,9 @@ import match from "./_lib/match/index.js";
 /**
  * @type {Locale}
  * @category Locales
- *
  * @summary Hungarian locale.
  * @language Hungarian
- *
  * @iso-639-2 hun
- *
  * @author Pavlo Shpak [@pshpak]{@link https://github.com/pshpak}
  * @author Eduardo Pardo [@eduardopsll]{@link https://github.com/eduardopsll}
  * @author Zoltan Szepesi [@twodcube]{@link https://github.com/twodcube}

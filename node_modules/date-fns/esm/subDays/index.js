@@ -1,6 +1,6 @@
-import toInteger from "../_lib/toInteger/index.js";
 import addDays from "../addDays/index.js";
 import requiredArgs from "../_lib/requiredArgs/index.js";
+import toInteger from "../_lib/toInteger/index.js";
 /**
  * @name subDays
  * @category Day Helpers
@@ -8,10 +8,6 @@ import requiredArgs from "../_lib/requiredArgs/index.js";
  *
  * @description
  * Subtract the specified number of days from the given date.
- *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
  * @param {Number} amount - the amount of days to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.

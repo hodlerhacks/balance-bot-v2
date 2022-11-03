@@ -25,17 +25,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * > ⚠️ Please note that this function is not present in the FP submodule as
  * > it uses `Date.now()` internally hence impure and can't be safely curried.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the date to check
  * @returns {Boolean} the date is yesterday
  * @throws {TypeError} 1 argument required
  *
  * @example
  * // If today is 6 October 2014, is 5 October 14:00:00 yesterday?
- * var result = isYesterday(new Date(2014, 9, 5, 14, 0))
+ * const result = isYesterday(new Date(2014, 9, 5, 14, 0))
  * //=> true
  */
 function isYesterday(dirtyDate) {

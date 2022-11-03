@@ -1,4 +1,5 @@
 /config*
+/logs*
 .vs*
 workspace.*
 test*

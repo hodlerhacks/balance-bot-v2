@@ -29,7 +29,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @throws {TypeError} 1 argument required
  * @throws {RangeError} `date` must not be Invalid Date
  * @throws {RangeError} `options.format` must be 'extended' or 'basic'
- * @throws {RangeError} `options.represenation` must be 'date', 'time' or 'complete'
+ * @throws {RangeError} `options.representation` must be 'date', 'time' or 'complete'
  *
  * @example
  * // Represent 18 September 2019 in ISO 9075 format:
@@ -51,7 +51,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
  * //=> '19:00:52'
  */
-function formatISO9075(dirtyDate, dirtyOptions) {
+function formatISO9075(dirtyDate, options) {
+  var _options$format, _options$representati;
+
   if (arguments.length < 1) {
     throw new TypeError("1 argument required, but only ".concat(arguments.length, " present"));
   }
@@ -62,9 +64,8 @@ function formatISO9075(dirtyDate, dirtyOptions) {
     throw new RangeError('Invalid time value');
   }
 
-  var options = dirtyOptions || {};
-  var format = options.format == null ? 'extended' : String(options.format);
-  var representation = options.representation == null ? 'complete' : String(options.representation);
+  var format = String((_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : 'extended');
+  var representation = String((_options$representati = options === null || options === void 0 ? void 0 : options.representation) !== null && _options$representati !== void 0 ? _options$representati : 'complete');
 
   if (format !== 'extended' && format !== 'basic') {
     throw new RangeError("format must be 'extended' or 'basic'");

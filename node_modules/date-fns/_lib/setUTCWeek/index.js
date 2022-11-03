@@ -15,8 +15,6 @@ var _index4 = _interopRequireDefault(require("../requiredArgs/index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
 function setUTCWeek(dirtyDate, dirtyWeek, options) {
   (0, _index4.default)(2, arguments);
   var date = (0, _index2.default)(dirtyDate);

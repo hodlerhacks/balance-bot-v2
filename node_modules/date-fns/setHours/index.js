@@ -21,10 +21,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @description
  * Set the hours to the given date.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the date to be changed
  * @param {Number} hours - the hours of the new date
  * @returns {Date} the new date with the hours set
@@ -32,7 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Set 4 hours to 1 September 2014 11:30:00:
- * var result = setHours(new Date(2014, 8, 1, 11, 30), 4)
+ * const result = setHours(new Date(2014, 8, 1, 11, 30), 4)
  * //=> Mon Sep 01 2014 04:30:00
  */
 function setHours(dirtyDate, dirtyHours) {

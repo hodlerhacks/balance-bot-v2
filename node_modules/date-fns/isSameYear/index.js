@@ -19,10 +19,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @description
  * Are the given dates in the same year?
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} dateLeft - the first date to check
  * @param {Date|Number} dateRight - the second date to check
  * @returns {Boolean} the dates are in the same year
@@ -30,7 +26,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Are 2 September 2014 and 25 September 2014 in the same year?
- * var result = isSameYear(new Date(2014, 8, 2), new Date(2014, 8, 25))
+ * const result = isSameYear(new Date(2014, 8, 2), new Date(2014, 8, 25))
  * //=> true
  */
 function isSameYear(dirtyDateLeft, dirtyDateRight) {

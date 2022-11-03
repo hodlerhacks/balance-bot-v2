@@ -11,8 +11,7 @@ var _index2 = _interopRequireDefault(require("../requiredArgs/index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MILLISECONDS_IN_DAY = 86400000; // This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
+var MILLISECONDS_IN_DAY = 86400000;
 
 function getUTCDayOfYear(dirtyDate) {
   (0, _index2.default)(1, arguments);

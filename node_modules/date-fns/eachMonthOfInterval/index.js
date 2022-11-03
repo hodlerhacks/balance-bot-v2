@@ -27,7 +27,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Each month between 6 February 2014 and 10 August 2014:
- * var result = eachMonthOfInterval({
+ * const result = eachMonthOfInterval({
  *   start: new Date(2014, 1, 6),
  *   end: new Date(2014, 7, 10)
  * })

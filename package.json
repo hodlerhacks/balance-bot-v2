@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@analytics/google-analytics-v3": "^0.6.1",
-    "analytics": "^0.8.1",
     "axios": "^1.1.2",
     "bcryptjs": "^2.4.3",
     "binance": "^2.0.40",

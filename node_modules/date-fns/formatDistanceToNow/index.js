@@ -52,25 +52,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * > ⚠️ Please note that this function is not present in the FP submodule as
  * > it uses `Date.now()` internally hence impure and can't be safely curried.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * - The function was renamed from `distanceInWordsToNow ` to `formatDistanceToNow`
- *   to make its name consistent with `format` and `formatRelative`.
- *
- *   ```javascript
- *   // Before v2.0.0
- *
- *   distanceInWordsToNow(new Date(2014, 6, 2), { addSuffix: true })
- *   //=> 'in 6 months'
- *
- *   // v2.0.0 onward
- *
- *   formatDistanceToNow(new Date(2014, 6, 2), { addSuffix: true })
- *   //=> 'in 6 months'
- *   ```
- *
  * @param {Date|Number} date - the given date
  * @param {Object} [options] - the object with options
  * @param {Boolean} [options.includeSeconds=false] - distances less than a minute are more detailed
@@ -83,7 +64,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // If today is 1 January 2015, what is the distance to 2 July 2014?
- * var result = formatDistanceToNow(
+ * const result = formatDistanceToNow(
  *   new Date(2014, 6, 2)
  * )
  * //=> '6 months'
@@ -91,7 +72,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @example
  * // If now is 1 January 2015 00:00:00,
  * // what is the distance to 1 January 2015 00:00:15, including seconds?
- * var result = formatDistanceToNow(
+ * const result = formatDistanceToNow(
  *   new Date(2015, 0, 1, 0, 0, 15),
  *   {includeSeconds: true}
  * )
@@ -100,7 +81,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @example
  * // If today is 1 January 2015,
  * // what is the distance to 1 January 2016, with a suffix?
- * var result = formatDistanceToNow(
+ * const result = formatDistanceToNow(
  *   new Date(2016, 0, 1),
  *   {addSuffix: true}
  * )
@@ -109,16 +90,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @example
  * // If today is 1 January 2015,
  * // what is the distance to 1 August 2016 in Esperanto?
- * var eoLocale = require('date-fns/locale/eo')
- * var result = formatDistanceToNow(
+ * const eoLocale = require('date-fns/locale/eo')
+ * const result = formatDistanceToNow(
  *   new Date(2016, 7, 1),
  *   {locale: eoLocale}
  * )
  * //=> 'pli ol 1 jaro'
  */
-function formatDistanceToNow(dirtyDate, dirtyOptions) {
+function formatDistanceToNow(dirtyDate, options) {
   (0, _index2.default)(1, arguments);
-  return (0, _index.default)(dirtyDate, Date.now(), dirtyOptions);
+  return (0, _index.default)(dirtyDate, Date.now(), options);
 }
 
 module.exports = exports.default;

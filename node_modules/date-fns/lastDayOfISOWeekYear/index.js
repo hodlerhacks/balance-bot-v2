@@ -25,22 +25,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * - The function was renamed from `lastDayOfISOYear` to `lastDayOfISOWeekYear`.
- *   "ISO week year" is short for [ISO week-numbering year](https://en.wikipedia.org/wiki/ISO_week_date).
- *   This change makes the name consistent with
- *   locale-dependent week-numbering year helpers, e.g., `getWeekYear`.
- *
  * @param {Date|Number} date - the original date
  * @returns {Date} the end of an ISO week-numbering year
  * @throws {TypeError} 1 argument required
  *
  * @example
  * // The last day of an ISO week-numbering year for 2 July 2005:
- * var result = lastDayOfISOWeekYear(new Date(2005, 6, 2))
+ * const result = lastDayOfISOWeekYear(new Date(2005, 6, 2))
  * //=> Sun Jan 01 2006 00:00:00
  */
 function lastDayOfISOWeekYear(dirtyDate) {

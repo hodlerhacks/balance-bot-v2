@@ -14,15 +14,6 @@ import requiredArgs from "../_lib/requiredArgs/index.js";
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * - The function was renamed from `setISOYear` to `setISOWeekYear`.
- *   "ISO week year" is short for [ISO week-numbering year](https://en.wikipedia.org/wiki/ISO_week_date).
- *   This change makes the name consistent with
- *   locale-dependent week-numbering year helpers, e.g., `setWeekYear`.
- *
  * @param {Date|Number} date - the date to be changed
  * @param {Number} isoWeekYear - the ISO week-numbering year of the new date
  * @returns {Date} the new date with the ISO week-numbering year set

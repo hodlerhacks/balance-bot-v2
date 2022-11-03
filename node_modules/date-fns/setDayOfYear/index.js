@@ -21,10 +21,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @description
  * Set the day of the year to the given date.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the date to be changed
  * @param {Number} dayOfYear - the day of the year of the new date
  * @returns {Date} the new date with the day of the year set
@@ -32,7 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Set the 2nd day of the year to 2 July 2014:
- * var result = setDayOfYear(new Date(2014, 6, 2), 2)
+ * const result = setDayOfYear(new Date(2014, 6, 2), 2)
  * //=> Thu Jan 02 2014 00:00:00
  */
 function setDayOfYear(dirtyDate, dirtyDayOfYear) {

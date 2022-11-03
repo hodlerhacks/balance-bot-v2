@@ -15,8 +15,7 @@ var _index4 = _interopRequireDefault(require("../requiredArgs/index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
+var MILLISECONDS_IN_WEEK = 604800000;
 
 function getUTCISOWeek(dirtyDate) {
   (0, _index4.default)(1, arguments);

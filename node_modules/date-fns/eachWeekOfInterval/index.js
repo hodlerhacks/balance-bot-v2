@@ -23,10 +23,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @description
  * Return the array of weeks within the specified time interval.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Interval} interval - the interval. See [Interval]{@link https://date-fns.org/docs/Interval}
  * @param {Object} [options] - an object with options.
  * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
@@ -39,7 +35,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Each week within interval 6 October 2014 - 23 November 2014:
- * var result = eachWeekOfInterval({
+ * const result = eachWeekOfInterval({
  *   start: new Date(2014, 9, 6),
  *   end: new Date(2014, 10, 23)
  * })

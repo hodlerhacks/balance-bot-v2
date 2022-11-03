@@ -32,7 +32,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Each hour between 6 October 2014, 12:00 and 6 October 2014, 15:00
- * var result = eachHourOfInterval({
+ * const result = eachHourOfInterval({
  *   start: new Date(2014, 9, 6, 12),
  *   end: new Date(2014, 9, 6, 15)
  * })
@@ -44,6 +44,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * // ]
  */
 function eachHourOfInterval(dirtyInterval, options) {
+  var _options$step;
+
   (0, _index3.default)(1, arguments);
   var interval = dirtyInterval || {};
   var startDate = (0, _index2.default)(interval.start);
@@ -58,7 +60,7 @@ function eachHourOfInterval(dirtyInterval, options) {
   var dates = [];
   var currentDate = startDate;
   currentDate.setMinutes(0, 0, 0);
-  var step = options && 'step' in options ? Number(options.step) : 1;
+  var step = Number((_options$step = options === null || options === void 0 ? void 0 : options.step) !== null && _options$step !== void 0 ? _options$step : 1);
   if (step < 1 || isNaN(step)) throw new RangeError('`options.step` must be a number greater than 1');
 
   while (currentDate.getTime() <= endTime) {

@@ -31,7 +31,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @example
  * // Each quarter within interval 6 February 2014 - 10 August 2014:
- * var result = eachQuarterOfInterval({
+ * const result = eachQuarterOfInterval({
  *   start: new Date(2014, 1, 6),
  *   end: new Date(2014, 7, 10)
  * })

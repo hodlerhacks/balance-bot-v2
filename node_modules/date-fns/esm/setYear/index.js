@@ -9,10 +9,6 @@ import requiredArgs from "../_lib/requiredArgs/index.js";
  * @description
  * Set the year to the given date.
  *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
  * @param {Date|Number} date - the date to be changed
  * @param {Number} year - the year of the new date
  * @returns {Date} the new date with the year set
