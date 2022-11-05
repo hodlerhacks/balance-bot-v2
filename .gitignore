@@ -2,5 +2,5 @@
 /logs*
 .vs*
 workspace.*
-test*
+*test*
 *copy*
