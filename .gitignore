@@ -1,6 +1,8 @@
 /config*
 /logs*
 /zip*
+/tmp*
+/temp*
 .vs*
 workspace.*
 *test*
