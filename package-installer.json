@@ -1,5 +1,5 @@
 {
-  "name": "balance_bot_installer",
+  "name": "balance-bot-installer",
   "version": "2.6.1",
   "description": "",
   "main": "install.js",
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^11.1.0",
     "prompt-sync": "^4.2.0"
   }
 }
