@@ -98,9 +98,10 @@ function install() {
 
     if (full && existsConfiguration) {
         try {
-            fse.copySync(installpath + 'config/', basepath + 'temp/', { overwrite: true });
+            if (fse.existsSync(installpath + 'config/')) fse.copySync(installpath + 'config/', basepath + 'temp/config/', { overwrite: true });
+            if (fse.existsSync(installpath + 'logs/')) fse.copySync(installpath + 'logs/', basepath + 'temp/logs/', { overwrite: true });
         } catch (err) {
-            console.log('Error occured while copying config folder (1): ', err);
+            console.log('Error occured while backing up config and log files: ', err);
             return process.exit(1);
         }
     }
@@ -154,9 +155,10 @@ function install() {
             }
             if (full && existsConfiguration) {
                 try {
-                    fse.copySync(basepath + 'temp/', installpath + 'config/', { overwrite: true });
+                    if (fse.existsSync(basepath + 'temp/config/')) fse.copySync(basepath + 'temp/config/', installpath + 'config/', { overwrite: true });
+                    if (fse.existsSync(basepath + 'temp/logs/')) fse.copySync(basepath + 'temp/logs/', installpath + 'logs/', { overwrite: true });
                 } catch (err) {
-                    console.log('Error occured while copying config folder (2): ', err);
+                    console.log('Error occured while restoring config and log files: ', err);
                     return process.exit(1);
                 }
                 try {
