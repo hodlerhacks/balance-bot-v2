@@ -5,6 +5,19 @@
 // Supported argument:
 // selection -> bypass menu
 
+// Check node version
+const nodeversion = process.versions.node;
+const minversion = 16;
+if (nodeversion.split('.')[0] < minversion) {
+    console.log();
+    console.log('-----------------------------------------------------------------------------------');
+    console.log(`The installed Node.js version is ${nodeversion}, but version ${minversion} or above is required`)
+    console.log(`Please install a recent version of Node.js and then start the installer again`)
+    console.log('-----------------------------------------------------------------------------------');
+    console.log();
+    process.exit(1);
+}
+
 const spawn = require('child_process').spawn;
 const execSync = require('child_process').execSync;
 const fse = require('fs-extra');
