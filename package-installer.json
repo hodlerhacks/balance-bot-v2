@@ -1,6 +1,6 @@
 {
   "name": "balance-bot-installer",
-  "version": "2.6.4",
+  "version": "2.6.8",
   "description": "",
   "main": "install.js",
   "scripts": {
