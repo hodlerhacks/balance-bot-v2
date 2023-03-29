@@ -30,7 +30,6 @@ const bbfile = 'bb.js';
 const installfile = 'install.js';
 const packageFileInstaller = 'package-installer.json';
 const packageFile = 'package.json';
-const versionFile = 'version.json';
 
 const installerVersion = require(basepath + packageFileInstaller).version;
 const existsInstallation = fse.pathExistsSync(installpath);
@@ -189,8 +188,6 @@ function install() {
             }
             const pckg = require(installpath + '/package.json');
 
-            setEnvironment();
-
             console.log(`Balance Bot version ${pckg.version} installed`);
             console.log('---------------------------------------------');
             if (pckg.description != '') {
@@ -291,14 +288,6 @@ function download(path, cb) {
         }
         else cb(null);
     });
-}
-
-function setEnvironment() {
-    const versionData = fse.readFileSync(installpath + versionFile);
-    const versionObj = JSON.parse(versionData);
-    versionObj.environment = staging ? 'staging' : 'production';
-
-    fse.writeFileSync(installpath + versionFile, JSON.stringify(versionObj));
 }
 
 function gitClone(path, cb) {
