@@ -299,7 +299,7 @@ function gitClone(path, cb) {
 }
 
 function gitPull(path, cb) {
-    const args = ['pull'];
+    const args = ['pull', '--ff-only'];
     spawncb('git', args, { cwd: path }, function (err) {
         if (err) cb(err);
         else cb(null);
