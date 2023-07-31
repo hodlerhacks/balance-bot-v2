@@ -6,7 +6,7 @@ on:
       - '*'
 
 env:
-  REGISTRY_IMAGE: bennert/balance-bot-v2
+  REGISTRY_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/balance-bot-v2
   PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 
 jobs:
