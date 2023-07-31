@@ -81,7 +81,6 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: ${{ matrix.platform }}
-          push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ env.REGISTRY_IMAGE }}:version${{ steps.gitversion.outputs.assemblySemVer }}.${{ steps.gitversion.outputs.buildMetaDataPadded }}
-          outputs: push-by-digest=true
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
