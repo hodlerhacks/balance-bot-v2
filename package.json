@@ -1,6 +1,6 @@
 {
   "name": "balance-bot-v2",
-  "version": "2.6.16",
+  "version": "2.6.17",
   "description": "",
   "main": "bb.js",
   "scripts": {
@@ -9,23 +9,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.1.2",
+    "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
-    "ccxt": "^4.0.48",
-    "date-fns": "^2.29.3",
-    "express": "^4.18.1",
-    "express-fileupload": "^1.4.0",
-    "graphql": "^16.6.0",
-    "graphql-request": "^5.0.0",
+    "ccxt": "^4.0.111",
+    "date-fns": "^2.30.0",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.1",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "hybrid-crypto-js": "^0.2.4",
-    "ipaddr.js": "^2.0.1",
+    "ipaddr.js": "^2.1.0",
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
-    "mixpanel": "^0.17.0",
-    "node-telegram-bot-api": "^0.59.0",
+    "mixpanel": "^0.18.0",
     "node-zip": "^1.1.1",
-    "socket.io": "^4.5.2",
+    "socket.io": "^4.7.2",
+    "telegraf": "^4.14.0",
     "uuid-random": "^1.3.2",
-    "yargs": "^17.3.0"
+    "yargs": "^17.7.2"
   }
 }
