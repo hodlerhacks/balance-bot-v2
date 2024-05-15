@@ -1,6 +1,6 @@
 {
   "name": "balance-bot-v2",
-  "version": "2.6.28",
+  "version": "2.7.0",
   "description": "",
   "main": "bb.js",
   "scripts": {
@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
-    "ccxt": "^4.2.45",
+    "ccxt": "^4.2.91",
     "date-fns": "^2.30.0",
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "express-fileupload": "^1.4.1",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
@@ -23,7 +23,7 @@
     "lowdb": "^1.0.0",
     "mixpanel": "^0.18.0",
     "node-forge": "^1.3.1",
-    "socket.io": "^4.7.2",
+    "socket.io": "^4.7.5",
     "telegraf": "^4.14.0",
     "uuid-random": "^1.3.2",
     "yargs": "^17.7.2"
