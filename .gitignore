@@ -8,3 +8,5 @@ workspace.*
 *test*
 *copy*
 node_modules
+/build
+/build2
